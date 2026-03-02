@@ -58,9 +58,9 @@ Ask **one at a time** only when needed. Skip any question the user already answe
 > - B. 字节跳动（bytedance）
 > - C. 深度求索（deepseek）
 > - D. 腾讯（tencent）
-> - E. 还没决定，用推荐的就行
+> - E. 用默认的就行
 
-**Default:** aliyun
+**Default:** deepseek
 
 ### Q3 — TTS
 
@@ -71,7 +71,7 @@ Ask **one at a time** only when needed. Skip any question the user already answe
 > - D. 阿里 CosyVoice（cosyvoice）
 > - E. 腾讯（tencent）
 > - F. 阶跃星辰（stepfun）
-> - G. 还没决定，用推荐的就行
+> - G. 用默认的就行
 
 **Default:** bytedance（火山引擎 TTS）
 
@@ -84,23 +84,31 @@ Ask **one at a time** only when needed. Skip any question the user already answe
 
 ### Q5 — MCP 状态
 
-> "你是否已安装 Agora Doc MCP Server？（用于获取最新文档）"
-> - A. 已安装
-> - B. 没有 / 不确定
+尝试调用 MCP 工具 `search-docs {"query": "convoai"}` 来检测 MCP 是否可用。
 
-**If B** → 提示用户：
-> "建议安装 Agora Doc MCP Server 以获取最新 API 文档，在 MCP 配置中添加：
-> ```json
-> {
->   "mcpServers": {
->     "agora-docs": {
->       "type": "sse",
->       "url": "https://doc-mcp.shengwang.cn/mcp"
->     }
->   }
-> }
-> ```
-> 没有 MCP 也可以继续，我会使用本地参考文档。"
+**If MCP 调用成功** → 记录 `MCP 状态 = 已安装`，跳过此问题。
+
+**If MCP 调用失败或不可用** → 帮助用户安装 Agora Doc MCP Server：
+
+1. 告知用户：
+> "检测到你还没有安装 Agora Doc MCP Server，我来帮你配置。这个 MCP 可以获取最新的 API 文档，对后续开发很有帮助。"
+
+2. 读取当前工作区的 MCP 配置文件 `.kiro/settings/mcp.json`（如果存在），在 `mcpServers` 中追加以下配置（不覆盖已有的其他 server）：
+```json
+{
+  "mcpServers": {
+    "agora-docs": {
+      "type": "sse",
+      "url": "https://doc-mcp.shengwang.cn/mcp"
+    }
+  }
+}
+```
+
+3. 写入配置后，提示用户：
+> "已添加 Agora Doc MCP Server 配置。MCP 会自动重连，稍等片刻即可生效。"
+
+4. 等待片刻后再次尝试调用 MCP 工具验证是否生效。如果仍然失败，提示用户手动检查配置或重启 IDE，然后使用本地参考文档继续。
 
 记录 MCP 状态，影响后续代码生成时的文档获取策略。
 
@@ -129,9 +137,9 @@ MCP 状态：        [已安装 / 未安装]
 | App Certificate | 未开启 | 如果用户不确定，按未开启处理，提醒后续开启需改传 Token |
 | ASR vendor | `fengming` | 声网凤鸣 ASR，默认 zh-CN |
 | ASR language | `zh-CN` | 中文（支持中英混合） |
-| LLM vendor | `deepseek` | 需用户提供 LLM url (OpenAI 兼容) |
+| LLM vendor | `deepseek` | 需用户提供 LLM url (OpenAI 兼容)；如用户选 E 则使用此默认值 |
 | TTS vendor | `bytedance` | 火山引擎 TTS |
-| MCP | 未安装 | 降级到本地 OpenAPI spec + fallback URL |
+| MCP | 未安装 | 自动帮用户安装配置，安装失败时降级到本地 OpenAPI spec + fallback URL |
 
 > ASR/TTS/LLM 可选值均来自 [convoai-restapi.yaml](../integrate-shengwang-conversational-ai/references/convoai-restapi.yaml)，不可自行编造。
 
