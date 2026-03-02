@@ -10,7 +10,7 @@ description: |
 license: MIT
 metadata:
   author: shengwang
-  version: "2.1.0"
+  version: "1.0.0"
 ---
 
 # Shengwang Intake — Product Routing & Needs Analysis

@@ -36,7 +36,7 @@ Server-side recording of RTC channel audio/video. No client SDK needed — pure 
 ### Step 1: Confirm Prerequisites
 
 - [ ] `AGORA_APP_ID`, `AGORA_CUSTOMER_KEY`, `AGORA_CUSTOMER_SECRET` ready
-- [ ] Cloud Recording service enabled in [Agora Console](https://console.agora.io/)
+- [ ] Cloud Recording service enabled in [Shengwang Console](https://console.shengwang.cn/)
 - [ ] Cloud storage configured (S3, Alibaba OSS, Azure Blob, etc.)
 
 Missing credentials? → [general/references/credentials.md](../general/references/credentials.md)

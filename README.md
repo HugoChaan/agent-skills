@@ -2,7 +2,7 @@
 
 [![中文](https://img.shields.io/badge/lang-中文-red.svg)](README_CN.md)
 
-Reusable skills for AI coding agents building with the [Shengwang (Agora)](https://www.agora.io/) platform. These skills help agents accurately integrate, configure, and debug Agora products.
+Reusable skills for AI coding agents building with the [Shengwang (Agora)](https://shengwang.cn/) platform. These skills help agents accurately integrate, configure, and debug Agora products.
 
 ## Available Skills
 
@@ -144,7 +144,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Key requirements:
 
 ## Links
 
-- [Agora Console](https://console.agora.io/)
+- [Shengwang Console](https://console.shengwang.cn/)
 - [Agora Docs (CN)](https://doc.shengwang.cn/)
-- [Agora Docs (Global)](https://docs.agora.io/)
 - [GitHub](https://github.com/AgoraIO-Community)

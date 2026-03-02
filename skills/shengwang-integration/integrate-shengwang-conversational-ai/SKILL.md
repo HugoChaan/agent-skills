@@ -9,7 +9,7 @@ description: |
 license: MIT
 metadata:
   author: shengwang
-  version: "5.2.0"
+  version: "1.0.0"
 ---
 
 # Shengwang Conversational AI Engine (ConvoAI)
@@ -55,7 +55,7 @@ metadata:
 Need `AGORA_APP_ID`, `AGORA_CUSTOMER_KEY`, `AGORA_CUSTOMER_SECRET`.
 Missing? → [general/references/credentials.md](../general/references/credentials.md)
 
-> **ConvoAI requires separate activation.** The user must enable ConvoAI for their project in [Agora Console](https://console.agora.io/), otherwise API calls return 403.
+> **ConvoAI requires separate activation.** The user must enable ConvoAI for their project in [Shengwang Console](https://console.shengwang.cn/), otherwise API calls return 403.
 > Details → [concepts/authentication.md](concepts/authentication.md#enabling-convoai-service)
 
 Need Go/Java SDK or AgoraDynamicKey? → [resource-downloader/SKILL.md](../resource-downloader/SKILL.md)

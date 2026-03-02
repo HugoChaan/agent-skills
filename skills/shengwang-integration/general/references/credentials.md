@@ -11,13 +11,13 @@ All Agora products share the same credential system.
 | `AGORA_CUSTOMER_SECRET` | Console → Settings → RESTful API | REST API Basic Auth password |
 | `AGORA_APP_CERTIFICATE` | Console → Project Overview | RTC token generation (only needed if App Certificate is enabled) |
 
-Get all credentials at: https://console.agora.io/
+Get all credentials at: https://console.shengwang.cn/
 
 ## Generation Rules
 
 - ALWAYS read credentials from environment variables — never hardcode
 - NEVER put `AGORA_CUSTOMER_SECRET` or `AGORA_APP_CERTIFICATE` in client-side code
-- If user doesn't have credentials → direct to https://console.agora.io/ to create a project
+- If user doesn't have credentials → direct to https://console.shengwang.cn/ to create a project
 
 ## Product-Specific Notes
 

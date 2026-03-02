@@ -8,7 +8,7 @@ description: |
 license: MIT
 metadata:
   author: shengwang
-  version: "4.0.0"
+  version: "1.0.0"
 ---
 
 # Shengwang Integration
@@ -49,7 +49,6 @@ Examples that MUST go through intake:
 
 ## Links
 
-- Console: https://console.agora.io/
+- Console: https://console.shengwang.cn/
 - Docs (CN): https://doc.shengwang.cn/
-- Docs (Global): https://docs.agora.io/
 - GitHub: https://github.com/AgoraIO-Community

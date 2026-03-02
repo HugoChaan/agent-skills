@@ -8,7 +8,7 @@ description: |
 license: MIT
 metadata:
   author: shengwang
-  version: "1.1.0"
+  version: "1.0.0"
 ---
 
 # Shengwang Token Server

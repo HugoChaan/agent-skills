@@ -143,7 +143,6 @@ bash scripts/validate-skills.sh
 
 ## 链接
 
-- [Agora Console](https://console.agora.io/)
+- [Shengwang Console](https://console.shengwang.cn/)
 - [声网文档](https://doc.shengwang.cn/)
-- [Agora Docs (Global)](https://docs.agora.io/)
 - [GitHub](https://github.com/AgoraIO-Community)

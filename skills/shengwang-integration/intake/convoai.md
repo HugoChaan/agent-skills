@@ -49,7 +49,7 @@ Ask **one at a time** only when needed. Skip any question the user already answe
 提示用户：
 > "如果后续在 Console 开启了 App Certificate，就需要改为传入 Token，否则 agent 会加入频道失败。"
 
-**If C or D** → direct to https://console.agora.io/ and pause until ready.
+**If C or D** → direct to https://console.shengwang.cn/ and pause until ready.
 
 ### Q2 — LLM
 
