@@ -24,7 +24,7 @@ AI coding agent 的声网平台集成技能包。帮助 agent 更准确地完成
 ### 方式 A：Skills CLI（agentskills.io 标准）
 
 ```bash
-npx skills add AgoraIO-Community/shengwang-skills
+npx skills add HugoChaan/agent-skills
 ```
 
 ### 方式 B：Git clone

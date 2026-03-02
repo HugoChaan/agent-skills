@@ -24,7 +24,7 @@ Reusable skills for AI coding agents building with the [Shengwang (Agora)](https
 ### Option A: Skills CLI (agentskills.io standard)
 
 ```bash
-npx skills add AgoraIO-Community/shengwang-skills
+npx skills add HugoChaan/agent-skills
 ```
 
 ### Option B: Git clone
