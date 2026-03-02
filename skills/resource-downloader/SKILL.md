@@ -79,3 +79,16 @@ Output: path to the downloaded folder under `<workspace_root>/.tmp/`
   - ❌ `https://github.com/AgoraIO-Community/agora-rest-client-go/tree/main/services`
 - Script requires `requests` library: `pip install requests`
 - Script requires `git` to be installed for GitHub repos
+
+## Error Handling
+
+| Error | Cause | Action |
+|-------|-------|--------|
+| `git clone` fails with 128 | Repo URL invalid or private | Verify URL exists and is public. Suggest correct URL from Common Resources table. |
+| Network timeout | No internet or DNS failure | Retry once. If still fails, tell user to check network and try manually. |
+| `requests` not installed | Missing Python dependency | Run `pip install requests` and retry. |
+| `git` not found | Git not installed | Tell user to install git: `brew install git` (macOS) or `apt install git` (Linux). |
+| Disk full / permission denied | Filesystem issue | Report the error message. Suggest checking disk space or permissions on target directory. |
+| ZIP extraction fails | Corrupted download | Delete partial file, retry download. If still fails, provide direct URL for manual download. |
+
+On any unrecoverable failure: report the exact error, suggest the user download manually from the URL, and do NOT silently skip or fabricate content.

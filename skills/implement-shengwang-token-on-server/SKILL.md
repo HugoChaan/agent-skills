@@ -200,3 +200,15 @@ When using token with ConvoAI `/join`:
 - [references/sdk-urls.md](references/sdk-urls.md) — AgoraDynamicKey download URLs per language
 - [references/api-spec.md](references/api-spec.md) — Token endpoint API spec
 - Official docs: https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication
+
+## Error Handling
+
+| Error | Cause | Action |
+|-------|-------|--------|
+| `APP_CERTIFICATE` empty or missing | Env var not set | Check `.env` file. If App Certificate not enabled in Console, token is not needed — use empty string. |
+| Token generation returns empty string | Wrong library version or params | Verify AgoraDynamicKey version matches AccessToken2. Check `channelName` is not nil. |
+| `BuildTokenWithUid` not found | Wrong import path | Check language-specific path in [references/sdk-urls.md](references/sdk-urls.md). Must use `rtctokenbuilder2` (not v1). |
+| Client gets `ERR_INVALID_TOKEN` | Token mismatch | Verify: (1) same `channelName`, (2) same `uid`, (3) token not expired, (4) correct `APP_CERTIFICATE`. |
+| AgoraDynamicKey download fails | Network or URL issue | Use [resource-downloader/SKILL.md](../resource-downloader/SKILL.md) or clone manually from https://github.com/AgoraIO/Tools. |
+
+On any token generation failure: never fall back to hardcoded tokens or skip authentication. Report the error and guide the user to fix the root cause.

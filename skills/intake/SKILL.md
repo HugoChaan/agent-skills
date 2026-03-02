@@ -46,13 +46,9 @@ metadata:
 First entry point for all Agora-related requests. This skill understands the full
 product landscape, identifies what the user needs, and routes to the right place.
 
-## When to Skip Intake
-
-Route directly to a product skill if the user:
-- Has a specific, actionable request with technical details already provided
-- Asks a direct question (e.g. "what does error 403 mean")
-- Names a specific operation (e.g. "generate a token", "stop my agent")
-- Already went through intake and has a structured spec
+> **Note:** Skip-intake logic is defined in [skills/SKILL.md](../SKILL.md) (root router).
+> If you are here, the root router has already determined that intake is needed.
+> Do NOT second-guess the routing decision — proceed with the intake flow below.
 
 ---
 
@@ -163,9 +159,9 @@ For each identified product, route to its detail collection:
 | Product | Detail intake | Product skill |
 |---------|--------------|---------------|
 | ConvoAI | [intake/convoai.md](convoai.md) | [integrate-shengwang-conversational-ai/SKILL.md](../integrate-shengwang-conversational-ai/SKILL.md) |
-| RTC SDK | (external docs for now) | https://doc.shengwang.cn/doc/rtc/javascript/get-started/quick-start |
-| RTM | (external docs for now) | https://doc.shengwang.cn/doc/rtm2/javascript/get-started/quick-start |
-| Cloud Recording | (external docs for now) | https://doc.shengwang.cn/doc/cloud-recording/restful/get-started/quick-start |
+| RTC SDK | — | [integrate-shengwang-rtc/SKILL.md](../integrate-shengwang-rtc/SKILL.md) |
+| RTM | — | [integrate-shengwang-rtm/SKILL.md](../integrate-shengwang-rtm/SKILL.md) |
+| Cloud Recording | — | [integrate-shengwang-cloud-recording/SKILL.md](../integrate-shengwang-cloud-recording/SKILL.md) |
 | Credentials / Auth | — | [general/SKILL.md](../general/SKILL.md) |
 | Token generation | — | [implement-shengwang-token-on-server/SKILL.md](../implement-shengwang-token-on-server/SKILL.md) |
 | Download SDK | — | [resource-downloader/SKILL.md](../resource-downloader/SKILL.md) |

@@ -2,7 +2,7 @@
 
 > Credential setup → [general/references/credentials.md](../../general/references/credentials.md)
 > REST Basic Auth patterns → [general/references/authentication.md](../../general/references/authentication.md)
-> RTC token generation → [general/references/authentication.md](../../general/references/authentication.md#rtc-channel-token)
+> RTC token generation → [implement-shengwang-token-on-server/SKILL.md](../../implement-shengwang-token-on-server/SKILL.md)
 
 ## ConvoAI-Specific Rules
 
@@ -20,7 +20,7 @@ The `token` field in the `/join` payload is for the **RTC channel**, not for RES
 | App Certificate | `token` value |
 |----------------|--------------|
 | Not enabled | `""` (empty string) |
-| Enabled | Generate via RTC Token Builder — see [general/references/authentication.md](../../general/references/authentication.md#rtc-channel-token) |
+| Enabled | Generate via RTC Token Builder — see [implement-shengwang-token-on-server/SKILL.md](../../implement-shengwang-token-on-server/SKILL.md) |
 
 If token expires mid-session → call `POST /agents/{agentId}/update` with a new token.
 

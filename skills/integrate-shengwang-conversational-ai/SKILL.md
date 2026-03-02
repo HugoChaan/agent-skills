@@ -24,13 +24,12 @@ metadata:
 
 ## Routing Guardrails
 
-> **STOP — Check before proceeding:**
-> No structured spec and no confirmed product selection?
-> → Redirect to [intake/SKILL.md](../intake/SKILL.md) first.
-> Do NOT start building just because the user said "AI agent" or "voice bot".
+> Intake skip/require logic is defined in [skills/SKILL.md](../SKILL.md) (root router).
+> If you arrived here without a structured spec and the request is vague,
+> redirect to [intake/SKILL.md](../intake/SKILL.md).
 
 - From intake with structured spec → skip to Workflow step 2.
-- Skip-intake fast path (specific operation/troubleshooting with enough details) → proceed directly.
+- Direct operation with enough details (e.g. "stop agent xxx") → proceed directly.
 
 ---
 

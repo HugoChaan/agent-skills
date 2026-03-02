@@ -40,4 +40,4 @@ AGORA_CUSTOMER_SECRET=your_customer_secret
 AGORA_APP_CERTIFICATE=your_app_certificate   # only if App Certificate enabled
 ```
 
-See [environment-variables.md](environment-variables.md) for full list including product-specific vars.
+All product skills use these same env var names. Never hardcode credentials in source files or commit `.env` with real values.

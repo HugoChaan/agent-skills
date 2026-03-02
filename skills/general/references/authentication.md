@@ -56,50 +56,9 @@ BasicAuthCredential credential = new BasicAuthCredential(
 
 ---
 
-## RTC Channel Token
+## RTC / RTM Token
 
-The RTC token is separate from REST auth. It authorizes a user or agent to join an RTC channel.
+Token generation is a separate concern from REST auth. For full details on token types,
+supported languages, code examples, and token expiry handling, see:
 
-| App Certificate status | Token value |
-|-----------------------|-------------|
-| Not enabled | `""` (empty string) — no token needed |
-| Enabled | Generate server-side via Agora Token Builder |
-
-### When to generate a token
-
-- Any operation that joins an RTC channel (ConvoAI `/join`, RTC SDK join, etc.)
-- Always generate server-side — never in client code
-- Set expiry longer than the expected session duration
-
-### Token Builder libraries
-
-| Language | Package |
-|----------|---------|
-| Go | `github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go` |
-| Java | `github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/java` |
-| Python | `github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/python` |
-| Node.js | `github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/nodejs` |
-| C++ | `github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/cpp` |
-
-### Minimal Go example
-
-```go
-import rtctokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtctokenbuilder2"
-
-token, err := rtctokenbuilder.BuildTokenWithUid(
-    os.Getenv("AGORA_APP_ID"),
-    os.Getenv("AGORA_APP_CERTIFICATE"),
-    channelName,
-    uid,                                    // 0 for auto-assign
-    rtctokenbuilder.RolePublisher,
-    tokenExpireSeconds,                     // e.g. 3600
-    privilegeExpireSeconds,                 // e.g. 3600
-)
-```
-
-### Rules
-
-- `uid` must match the UID used when joining the channel
-- If token expires mid-session, update it via the product's update API
-  - ConvoAI: `POST /agents/{agentId}/update` with new token
-- Use `RolePublisher` for agents that send audio; `RoleSubscriber` for listen-only
+→ [implement-shengwang-token-on-server/SKILL.md](../../implement-shengwang-token-on-server/SKILL.md)
