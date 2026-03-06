@@ -1,14 +1,6 @@
----
-name: convoai-intake
-description: |
-  Collects ConvoAI-specific implementation details after the main intake has
-  identified ConvoAI as the target product. Outputs a structured spec that
-  drives code generation in integrate-shengwang-conversational-ai/SKILL.md.
----
-
 # ConvoAI Detail Collection
 
-Reached from [intake/SKILL.md](../SKILL.md) after ConvoAI is identified as the primary product.
+Reached from [intake](README.md) after ConvoAI is identified as the primary product.
 
 ## Language Detection
 
@@ -217,21 +209,21 @@ MCP Status:       [Installed / Not installed]
 | ASR language | `zh-CN` | 中文（支持中英混合） | Chinese (supports Chinese-English mix) |
 | LLM vendor | `deepseek` | 如用户选 E 则使用此默认值 | Used when user picks E (default) |
 | TTS vendor | `bytedance` | 火山引擎 TTS | Volcengine TTS |
-| MCP | Not installed | 自动帮用户安装配置，安装失败时降级到本地 OpenAPI spec + fallback URL | Auto-install config; fall back to local OpenAPI spec if install fails |
+| MCP | Not installed | 自动帮用户安装配置，安装失败时降级到 Generation Rules + fallback URL | Auto-install config; fall back to Generation Rules + fallback URL if install fails |
 
-> ASR/TTS/LLM valid values come from [convoai-restapi.yaml](../integrate-shengwang-conversational-ai/references/convoai-restapi.yaml) — do not invent values.
+> ASR/TTS/LLM valid values come from MCP API docs — use `get-doc-content {"uri": "docs://default/convoai/restful/convoai/operations/start-agent"}` for the /join schema, or `search-docs {"query": "convoai vendor"}` for vendor params. Do not invent values.
 
 ## Route After Collection
 
-Pass the structured spec to [integrate-shengwang-conversational-ai/SKILL.md](../integrate-shengwang-conversational-ai/SKILL.md),
+Pass the structured spec to [integrate-shengwang-conversational-ai](../references/integrate-shengwang-conversational-ai/README.md),
 skipping questions already answered.
 
 | Detail | Routing hint |
 |--------|-------------|
-| Dev = Go | ConvoAI SKILL.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-go"}` |
-| Dev = Java | ConvoAI SKILL.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-java"}` |
-| Dev = Python/curl | ConvoAI SKILL.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start"}` |
-| App Certificate = Enabled | [implement-shengwang-token-on-server/SKILL.md](../implement-shengwang-token-on-server/SKILL.md) to generate RTC Token |
-| Needs Go/Java SDK | [resource-downloader/SKILL.md](../resource-downloader/SKILL.md) to download REST client SDK |
-| Needs Token Builder | [resource-downloader/SKILL.md](../resource-downloader/SKILL.md) to download AgoraDynamicKey |
-| MCP = Not installed | Use local OpenAPI spec + Generation Rules, add fallback URL in output |
+| Dev = Go | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-go"}` |
+| Dev = Java | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-java"}` |
+| Dev = Python/curl | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start"}` |
+| App Certificate = Enabled | [implement-shengwang-token-on-server](../references/implement-shengwang-token-on-server/README.md) to generate RTC Token |
+| Needs Go/Java SDK | [resource-downloader](../references/resource-downloader/README.md) to download REST client SDK |
+| Needs Token Builder | [resource-downloader](../references/resource-downloader/README.md) to download AgoraDynamicKey |
+| MCP = Not installed | Use Generation Rules + fallback URL in output |
