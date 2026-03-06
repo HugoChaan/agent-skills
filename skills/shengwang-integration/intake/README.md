@@ -113,7 +113,7 @@ Wait for user confirmation before proceeding.
 
 For each identified product, route to its detail collection:
 
-| Product | Detail intake | Product skill |
+| Product | Detail intake | Product module |
 |---------|--------------|---------------|
 | ConvoAI | [intake/convoai.md](convoai.md) | [integrate-shengwang-conversational-ai](../references/integrate-shengwang-conversational-ai/README.md) |
 | RTC SDK | — | [integrate-shengwang-rtc](../references/integrate-shengwang-rtc/README.md) |

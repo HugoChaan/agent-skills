@@ -58,15 +58,15 @@ Add to your MCP configuration:
 }
 ```
 
-> Skills work without MCP too — they fall back to local OpenAPI specs and external doc links.
+> Skills work without MCP too — they fall back to local reference docs and external doc links.
 
 ### 3. Start Using
 
 Describe your needs to the agent — skills trigger automatically:
 
 - "I want to build an AI voice assistant" → intake analysis → ConvoAI + RTC integration
-- "Generate an RTC token in Go" → Token Server skill
-- "How to implement video calls on Web" → RTC SDK skill
+- "Generate an RTC token in Go" → Token Server module
+- "How to implement video calls on Web" → RTC SDK module
 - "Download the ConvoAI Go SDK" → Resource Downloader
 
 ## How It Works
@@ -86,10 +86,10 @@ skills/shengwang-integration/SKILL.md (entry point)
 ```
 
 The entry point (`skills/shengwang-integration/SKILL.md`) determines whether the request is specific enough:
-- Clear and actionable → route directly to the matching product skill
+- Clear and actionable → route directly to the matching product module
 - Vague or missing details → run intake to collect requirements first, then route
 
-Each product skill follows a consistent workflow: confirm credentials → fetch latest docs via MCP → generate code → validate.
+Each product module follows a consistent workflow: confirm credentials → fetch latest docs via MCP → generate code → validate.
 
 ## Repository Structure
 
@@ -121,9 +121,9 @@ shengwang-skills/
 ## Design Philosophy
 
 - Behavior over knowledge: skills teach agents *how to approach* integration; MCP provides *specific APIs*
-- Single responsibility: each skill does one thing
+- Single responsibility: each module does one thing
 - Progressive disclosure: SKILL.md serves as navigation; detailed content lives in `references/` and module `README.md` files
-- Explicit failure paths: every skill defines error handling
+- Explicit failure paths: every module defines error handling
 - Eval-driven iteration: validate changes against `tests/eval-cases.md`
 
 ## Validation

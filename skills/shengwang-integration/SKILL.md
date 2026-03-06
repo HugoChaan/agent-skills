@@ -20,7 +20,7 @@ metadata:
 Skip [intake](intake/README.md) and route directly ONLY when ALL of these are true:
 - User names a specific operation (e.g. "stop agent xxx", "generate a token", "download SDK")
 - User provides enough technical details to act immediately (channel name, agent ID, language, etc.)
-- The request maps unambiguously to exactly one skill in the table below
+- The request maps unambiguously to exactly one module in the table below
 
 Examples that SKIP intake:
 - "帮我停掉 agent_abc123" → [integrate-shengwang-conversational-ai](references/integrate-shengwang-conversational-ai/README.md)

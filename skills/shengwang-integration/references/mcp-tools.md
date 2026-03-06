@@ -1,7 +1,7 @@
 # Agora Doc MCP Tools
 
 Internal guide for the model. Describes how to use the Agora Doc MCP server
-to fetch up-to-date documentation content during skill execution.
+to fetch up-to-date documentation during skill execution.
 
 **MCP endpoint:** `https://doc-mcp.shengwang.cn/mcp`
 
@@ -15,42 +15,13 @@ to fetch up-to-date documentation content during skill execution.
 
 ## Preferred Approach: Direct URI
 
-When the doc URI is known, call `get-doc-content` directly — no search needed:
+When the doc URI is known (each product README lists its MCP URIs), call `get-doc-content` directly:
 
 ```
 get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start"}
 ```
 
-## Known Doc URIs
-
-Each product skill defines its own MCP URIs. Consolidated here for reference:
-
-| Product | Topic | URI |
-|---------|-------|-----|
-| ConvoAI | Quick Start (Python/curl) | `docs://default/convoai/restful/get-started/quick-start` |
-| ConvoAI | Quick Start (Go) | `docs://default/convoai/restful/get-started/quick-start-go` |
-| ConvoAI | Quick Start (Java) | `docs://default/convoai/restful/get-started/quick-start-java` |
-| RTC | Quick Start (Web) | `docs://default/rtc/javascript/get-started/quick-start` |
-| RTC | Quick Start (Android) | `docs://default/rtc/android/get-started/quick-start` |
-| RTC | Quick Start (iOS) | `docs://default/rtc/ios/get-started/quick-start` |
-| RTM | Quick Start (Web) | `docs://default/rtm2/javascript/get-started/quick-start` |
-| RTM | Quick Start (Android) | `docs://default/rtm2/android/get-started/quick-start` |
-| RTM | Quick Start (iOS) | `docs://default/rtm2/ios/get-started/quick-start` |
-| Cloud Recording | Quick Start | `docs://default/cloud-recording/restful/get-started/quick-start` |
-
-### ConvoAI REST API Endpoints
-
-| Endpoint | URI |
-|----------|-----|
-| POST /join (start agent) | `docs://default/convoai/restful/convoai/operations/start-agent` |
-| POST /leave (stop agent) | `docs://default/convoai/restful/convoai/operations/stop-agent` |
-| POST /update (update config) | `docs://default/convoai/restful/convoai/operations/agent-update` |
-| GET query status | `docs://default/convoai/restful/convoai/operations/query-agent-status` |
-| GET agent list | `docs://default/convoai/restful/convoai/operations/get-agent-list` |
-| POST speak | `docs://default/convoai/restful/convoai/operations/agent-speak` |
-| POST interrupt | `docs://default/convoai/restful/convoai/operations/agent-interrupt` |
-| GET history | `docs://default/convoai/restful/convoai/operations/get-history` |
-| All endpoints index | `docs://default/convoai/restful/convoai/operations` |
+Do NOT search first if you already have the URI from a product README.
 
 ## Fallback: Search Then Read
 
@@ -74,5 +45,5 @@ Step 2: get-doc-content {"uri": "docs://..."}
 
 **Do NOT call for:**
 - Generation rules (field types, naming conventions) — stable, in skill files
-- Auth patterns — stable, in [references/general/credentials-and-auth.md](general/credentials-and-auth.md)
+- Auth patterns — stable, in [general/credentials-and-auth.md](general/credentials-and-auth.md)
 - Workflow steps — stable, in skill files

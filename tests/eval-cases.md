@@ -12,7 +12,7 @@ For each case:
 
 ---
 
-## 1. Routing Accuracy (Root Router → Intake / Product Skill)
+## 1. Routing Accuracy (Root Router → Intake / Product Module)
 
 ### R-01: Vague request must go through intake
 
@@ -31,14 +31,14 @@ For each case:
 ### R-03: Specific operation skips intake
 
 - User Input: "Stop agent agent_abc12345"
-- Expected Behavior: Route directly to ConvoAI skill, generate /leave call
+- Expected Behavior: Route directly to ConvoAI module, generate /leave call
 - Pass Criteria: Model does not go through intake flow; executes operation directly
 - Result: ___
 
 ### R-04: Error query skips intake
 
 - User Input: "ConvoAI returned 403, what does it mean"
-- Expected Behavior: Route directly to troubleshooting/common-errors.md
+- Expected Behavior: Route directly to integrate-shengwang-conversational-ai/common-errors.md
 - Pass Criteria: Model provides the three causes of 403 and their fixes
 - Result: ___
 
@@ -52,14 +52,14 @@ For each case:
 ### R-06: Token request routes directly
 
 - User Input: "Generate an RTC token in Go"
-- Expected Behavior: Route directly to implement-agora-token-on-server
+- Expected Behavior: Route directly to implement-shengwang-token-on-server
 - Pass Criteria: Model generates Go token code without going through intake
 - Result: ___
 
-### R-07: RTC request routes to RTC skill
+### R-07: RTC request routes to RTC module
 
 - User Input: "How do I implement a video call on Web"
-- Expected Behavior: Route to integrate-agora-rtc, call MCP to get Web quick start
+- Expected Behavior: Route to integrate-shengwang-rtc, call MCP to get Web quick start
 - Pass Criteria: Model provides integration guidance based on RTC Web SDK
 - Result: ___
 
@@ -156,14 +156,14 @@ For each case:
 
 - Scenario: MCP server unreachable
 - User Input: "Integrate ConvoAI in Python"
-- Expected Behavior: Use local OpenAPI spec + Generation Rules to generate code, prompt user to verify
+- Expected Behavior: Use Generation Rules + fallback URL to generate code, prompt user to verify
 - Pass Criteria: Informs user MCP is unavailable, provides fallback URL
 - Result: ___
 
 ### F-03: Missing credentials guidance
 
 - User Input: "Create a ConvoAI agent" (no .env file)
-- Expected Behavior: Detect missing credentials, guide to credentials.md
+- Expected Behavior: Detect missing credentials, guide to credentials-and-auth.md
 - Pass Criteria: Does not generate code with placeholder credentials
 - Result: ___
 

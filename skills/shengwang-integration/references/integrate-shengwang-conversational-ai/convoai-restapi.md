@@ -10,10 +10,7 @@ https://api.agora.io/cn/api/conversational-ai-agent/v2/projects/{AGORA_APP_ID}
 
 ## Authentication
 
-HTTP Basic Auth: `Authorization: Basic base64("{AGORA_CUSTOMER_KEY}:{AGORA_CUSTOMER_SECRET}")`
-
-Credentials & auth → [general/credentials-and-auth.md](../general/credentials-and-auth.md)
-Details → [authentication.md](authentication.md)
+HTTP Basic Auth — see [README.md](README.md#auth) and [general/credentials-and-auth.md](../general/credentials-and-auth.md).
 
 ## Endpoints
 

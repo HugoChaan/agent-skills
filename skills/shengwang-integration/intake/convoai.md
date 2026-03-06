@@ -1,14 +1,6 @@
----
-name: convoai-intake
-description: |
-  Collects ConvoAI-specific implementation details after the main intake has
-  identified ConvoAI as the target product. Outputs a structured spec that
-  drives code generation in integrate-shengwang-conversational-ai/README.md.
----
-
 # ConvoAI Detail Collection
 
-Reached from [intake](../SKILL.md) after ConvoAI is identified as the primary product.
+Reached from [intake](README.md) after ConvoAI is identified as the primary product.
 
 ## Language Detection
 

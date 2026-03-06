@@ -1,25 +1,28 @@
 # Shengwang Conversational AI Engine (ConvoAI)
 
-## Routing Guardrails
+Real-time AI voice agent. User speaks into an RTC channel, agent responds via ASR → LLM → TTS pipeline.
 
-> Intake skip/require logic is defined in [SKILL.md](../../SKILL.md) (root router).
-> If you arrived here without a structured spec and the request is vague,
-> redirect to [intake](../../intake/README.md).
+## How It Works
 
-- From intake with structured spec → skip to Workflow step 2.
-- Direct operation with enough details (e.g. "stop agent xxx") → proceed directly.
+```
+User Device ── audio ──► RTC Channel ──► ConvoAI Agent (ASR → LLM → TTS)
+User Device ◄── audio ── RTC Channel ◄── ConvoAI Agent
+```
 
----
+- Agent is server-side only — managed via REST API, no client SDK
+- Client uses RTC SDK (Web/Android/iOS) to join the channel
+- `POST /join` makes the agent join the same RTC channel
 
-## Resource Lookup
+## Auth
 
-| Priority | Source | Use for |
-|----------|--------|---------|
-| 1 | [convoai-restapi.md](convoai-restapi.md) | Stable API structure: endpoints, lifecycle, MCP URI index |
-| 2 | MCP ConvoAI REST API docs (per-endpoint URIs in convoai-restapi.md) | Full request/response schemas, vendor params (AUTHORITATIVE) |
-| 3 | Generation Rules (below) | Field type gotchas, naming, error handling — things the spec can't express |
+- REST calls: HTTP Basic Auth (`AGORA_CUSTOMER_KEY` + `AGORA_CUSTOMER_SECRET`)
+- ConvoAI requires separate activation in [Shengwang Console](https://console.shengwang.cn/) — 403 without it
+- The `token` field in `/join` is for the RTC channel, NOT for REST auth:
+  - App Certificate not enabled → `""`
+  - App Certificate enabled → generate via [implement-shengwang-token-on-server](../implement-shengwang-token-on-server/README.md)
+- Credentials → [general/credentials-and-auth.md](../general/credentials-and-auth.md)
 
-### Quick Start URIs (MCP)
+## Quick Start Docs (MCP)
 
 | Language | URI |
 |----------|-----|
@@ -27,84 +30,45 @@
 | Go | `docs://default/convoai/restful/get-started/quick-start-go` |
 | Java | `docs://default/convoai/restful/get-started/quick-start-java` |
 
-**MCP fallback:** If unavailable, use Generation Rules below + fallback URL, and tell the user to verify against https://doc.shengwang.cn/doc/convoai/restful/get-started/quick-start
-
----
-
-## Workflow
-
-### Step 1: Confirm Credentials & Service Activation
-
-Need `AGORA_APP_ID`, `AGORA_CUSTOMER_KEY`, `AGORA_CUSTOMER_SECRET`.
-Missing? → [general/credentials-and-auth.md](../general/credentials-and-auth.md)
-
-> **ConvoAI requires separate activation.** The user must enable ConvoAI for their project in [Shengwang Console](https://console.shengwang.cn/), otherwise API calls return 403.
-> Details → [authentication.md](authentication.md#enabling-convoai-service)
-
-Need Go/Java SDK or AgoraDynamicKey? → [resource-downloader](../resource-downloader/README.md)
-
-### Step 2: Fetch Quick Start via MCP (MANDATORY)
-
-Call `get-doc-content` with the URI matching the user's dev language (table above).
-Read the returned doc fully before writing any code.
-
-### Step 3: Generate Code
-
-1. Quick start doc as primary code reference
-2. Consult MCP API endpoint docs for detailed field definitions (see Resource Lookup table)
-3. Apply Generation Rules (below)
-4. Apply user's intake spec (language, LLM, TTS vendor, etc.)
-
-### Step 4: Validate
-
-- [ ] Credentials from env vars, never hardcoded
-- [ ] `agent_rtc_uid` is string `"0"`, not int `0`
-- [ ] `remote_rtc_uids` is `["*"]`, not `"*"`
-- [ ] `name` has random suffix (`agent_{uuid[:8]}`) to avoid 409
-- [ ] Error handling covers 409 and 503/504
-- [ ] TTS/ASR params match vendor schema in OpenAPI spec
-
----
-
-## Quick Reference
-
-**Architecture:**
-`User Voice → RTC Channel → ASR → LLM → TTS → RTC Channel → User hears AI`
-Agent joins RTC channel via REST API (no client-side SDK for the agent).
-Details → [architecture.md](architecture.md)
-
-**Auth:** HTTP Basic Auth on all ConvoAI REST calls:
-`Authorization: Basic base64("{CUSTOMER_KEY}:{CUSTOMER_SECRET}")`
-Details → [authentication.md](authentication.md)
-
-**Base URL:** `https://api.agora.io/cn/api/conversational-ai-agent/v2/projects/{AGORA_APP_ID}`
-
----
+API endpoint index → [convoai-restapi.md](convoai-restapi.md)
 
 ## Generation Rules
 
-Stable constraints that do NOT change with API updates. Always apply.
+Stable constraints that do NOT change with API updates. Always apply when generating code.
 
-### Field Types
+### Field Types (common pitfalls)
 - `agent_rtc_uid`: STRING `"0"`, not int `0`
 - `remote_rtc_uids`: array `["*"]`, not `"*"`
 - `name`: unique per project — use `agent_{uuid[:8]}`
+- `agent_rtc_uid` must not collide with any human participant's UID
 
-### Create Agent
-- `token`: `""` if no App Certificate; otherwise RTC token builder
+### Create Agent (`POST /join`)
+- `token`: `""` if no App Certificate; otherwise RTC token
 - `agent_rtc_uid`: `"0"` for auto-assign
 - `remote_rtc_uids`: `["*"]` unless user specifies UIDs
 
-### Update Agent
+### Update Agent (`POST /update`)
 - `llm.params` is FULLY REPLACED — always send complete object
 - Only `token` and `llm` are updatable; everything else is immutable
 
 ### Terminology
-- `agentId` in URL paths (`/agents/{agentId}/leave`) = `agent_id` in JSON bodies
+- `agentId` in URL paths = `agent_id` in JSON bodies
 - `/join` returns `agent_id` (snake_case); use it as path param
 
 ### Error Handling
 - 409: extract existing `agent_id` or generate new name, retry
 - 503/504: exponential backoff, max 3 retries
 - Always parse `detail` + `reason` from error responses
-- Diagnosis → [common-errors.md](common-errors.md)
+- Full diagnosis → [common-errors.md](common-errors.md)
+
+## Demo Projects
+
+| Resource | URL |
+|----------|-----|
+| ConvoAI server sample | https://github.com/Shengwang-Community/Conversational-AI-Server-Sample |
+| Go REST client | https://github.com/AgoraIO-Community/agora-rest-client-go |
+| Java REST client | https://github.com/AgoraIO-Community/agora-rest-client-java |
+
+## Docs Fallback
+
+If MCP is unavailable: https://doc.shengwang.cn/doc/convoai/restful/get-started/quick-start

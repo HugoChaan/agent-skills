@@ -12,7 +12,7 @@
 
 ---
 
-## 一、路由准确性（Root Router → Intake / Product Skill）
+## 一、路由准确性（Root Router → Intake / Product Module）
 
 ### R-01: 模糊请求必须走 intake
 
@@ -31,14 +31,14 @@
 ### R-03: 具体操作跳过 intake
 
 - 用户输入: "帮我停掉 agent_abc12345"
-- 期望行为: 直接路由到 ConvoAI skill，生成 /leave 调用
+- 期望行为: 直接路由到 ConvoAI 模块，生成 /leave 调用
 - 判定标准: 模型未走 intake 流程，直接执行操作
 - 结果: ___
 
 ### R-04: 错误查询跳过 intake
 
 - 用户输入: "ConvoAI 返回 403 是什么意思"
-- 期望行为: 直接路由到 troubleshooting/common-errors.md
+- 期望行为: 直接路由到 integrate-shengwang-conversational-ai/common-errors.md
 - 判定标准: 模型给出 403 的三种原因和修复方法
 - 结果: ___
 
@@ -56,7 +56,7 @@
 - 判定标准: 模型生成 Go token 代码，未走 intake
 - 结果: ___
 
-### R-07: RTC 请求路由到 RTC skill
+### R-07: RTC 请求路由到 RTC 模块
 
 - 用户输入: "Web 端怎么实现视频通话"
 - 期望行为: 路由到 integrate-shengwang-rtc，调用 MCP 获取 Web quick start
@@ -156,14 +156,14 @@
 
 - 场景: MCP server 无法连接
 - 用户输入: "用 Python 接入 ConvoAI"
-- 期望行为: 使用本地 OpenAPI spec + Generation Rules 生成代码，并提示用户验证
+- 期望行为: 使用 Generation Rules + fallback URL 生成代码，并提示用户验证
 - 判定标准: 告知用户 MCP 不可用，给出 fallback URL
 - 结果: ___
 
 ### F-03: 缺少凭证时的引导
 
 - 用户输入: "创建一个 ConvoAI agent" (无 .env 文件)
-- 期望行为: 检测到缺少凭证，引导到 credentials.md
+- 期望行为: 检测到缺少凭证，引导到 credentials-and-auth.md
 - 判定标准: 不是用占位符直接生成代码
 - 结果: ___
 
