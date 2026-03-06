@@ -8,14 +8,14 @@ AI coding agent 的声网平台集成技能包。帮助 agent 更准确地完成
 
 | Skill | 产品 | 说明 |
 |-------|------|------|
-| [integrate-shengwang-conversational-ai](skills/shengwang-integration/integrate-shengwang-conversational-ai/SKILL.md) | ConvoAI | AI 语音 agent 全流程：创建/停止/更新/查询，支持 Go/Java/Python |
-| [integrate-shengwang-rtc](skills/shengwang-integration/integrate-shengwang-rtc/SKILL.md) | RTC SDK | 实时音视频通话，支持 Web/Android/iOS/Flutter 等 |
-| [integrate-shengwang-rtm](skills/shengwang-integration/integrate-shengwang-rtm/SKILL.md) | RTM | 实时消息、信令、Presence |
-| [integrate-shengwang-cloud-recording](skills/shengwang-integration/integrate-shengwang-cloud-recording/SKILL.md) | Cloud Recording | 服务端录制 RTC 会话 |
-| [implement-shengwang-token-on-server](skills/shengwang-integration/implement-shengwang-token-on-server/SKILL.md) | Token Server | 服务端 Token 生成（AccessToken2） |
-| [general](skills/shengwang-integration/general/SKILL.md) | 通用 | 凭证管理、REST 认证模式 |
-| [resource-downloader](skills/shengwang-integration/resource-downloader/SKILL.md) | 工具 | 下载 SDK、示例项目、Token Builder |
-| [intake](skills/shengwang-integration/intake/SKILL.md) | 路由 | 需求分析 → 产品推荐 → 路由到具体模块 |
+| [integrate-shengwang-conversational-ai](skills/shengwang-integration/references/integrate-shengwang-conversational-ai/README.md) | ConvoAI | AI 语音 agent 全流程：创建/停止/更新/查询，支持 Go/Java/Python |
+| [integrate-shengwang-rtc](skills/shengwang-integration/references/integrate-shengwang-rtc/README.md) | RTC SDK | 实时音视频通话，支持 Web/Android/iOS/Flutter 等 |
+| [integrate-shengwang-rtm](skills/shengwang-integration/references/integrate-shengwang-rtm/README.md) | RTM | 实时消息、信令、Presence |
+| [integrate-shengwang-cloud-recording](skills/shengwang-integration/references/integrate-shengwang-cloud-recording/README.md) | Cloud Recording | 服务端录制 RTC 会话 |
+| [implement-shengwang-token-on-server](skills/shengwang-integration/references/implement-shengwang-token-on-server/README.md) | Token Server | 服务端 Token 生成（AccessToken2） |
+| [general](skills/shengwang-integration/references/general/credentials-and-auth.md) | 通用 | 凭证管理、REST 认证模式 |
+| [resource-downloader](skills/shengwang-integration/references/resource-downloader/README.md) | 工具 | 下载 SDK、示例项目、Token Builder |
+| [intake](skills/shengwang-integration/intake/README.md) | 路由 | 需求分析 → 产品推荐 → 路由到具体模块 |
 
 ## 快速开始
 
@@ -104,23 +104,24 @@ shengwang-skills/
 │   └── eval-cases.md          # 评测用例
 └── skills/
     └── shengwang-integration/     # Skill 本体（agentskills.io 标准）
-        ├── SKILL.md               # 入口和路由
-        ├── mcp-tools.md           # MCP 工具使用指南
+        ├── SKILL.md               # 入口和路由（唯一的 SKILL.md）
         ├── intake/                # 需求分析与产品路由
-        ├── general/               # 凭证、REST 认证
-        ├── integrate-shengwang-conversational-ai/  # ConvoAI
-        ├── integrate-shengwang-rtc/               # RTC SDK
-        ├── integrate-shengwang-rtm/               # RTM
-        ├── integrate-shengwang-cloud-recording/   # Cloud Recording
-        ├── implement-shengwang-token-on-server/   # Token 生成
-        └── resource-downloader/                   # SDK/示例下载
+        └── references/            # 所有产品模块和共享知识
+            ├── mcp-tools.md           # MCP 工具使用指南
+            ├── general/               # 凭证、REST 认证
+            ├── integrate-shengwang-conversational-ai/  # ConvoAI
+            ├── integrate-shengwang-rtc/               # RTC SDK
+            ├── integrate-shengwang-rtm/               # RTM
+            ├── integrate-shengwang-cloud-recording/   # Cloud Recording
+            ├── implement-shengwang-token-on-server/   # Token 生成
+            └── resource-downloader/                   # SDK/示例下载
 ```
 
 ## 设计原则
 
 - 行为指导优先于 API 知识：skills 教 agent "怎么做"，MCP 提供"具体 API"
 - 单一职责：每个 skill 只做一件事
-- 渐进式披露：SKILL.md 做导航，详细内容在 references/
+- 渐进式披露：SKILL.md 做导航，详细内容在 references/ 和各模块 README.md 中
 - 失败路径显式定义：每个 skill 都有错误处理表
 - 评测驱动迭代：修改 skill 后用 `tests/eval-cases.md` 回归验证
 
@@ -130,15 +131,16 @@ shengwang-skills/
 bash scripts/validate-skills.sh
 ```
 
-检查所有 SKILL.md 的 frontmatter 格式和 markdown 链接有效性。
+检查 SKILL.md 的 frontmatter 格式和 markdown 链接有效性。
 
 ## 贡献
 
 参见 [CONTRIBUTING.md](CONTRIBUTING.md)。核心要求：
 
-- 每个 skill 目录必须有 `SKILL.md`，包含 YAML frontmatter（name, description, metadata.author, metadata.version）
+- 根 skill 目录有 `SKILL.md`，包含 YAML frontmatter（name, description, metadata.author, metadata.version）
+- 子模块使用 `README.md`（无需 frontmatter）
 - 目录名用 kebab-case
-- 详细文档放 `references/`，SKILL.md 保持精简
+- 详细文档放 `references/`，SKILL.md 和 README.md 保持精简
 - 提交前跑 `bash scripts/validate-skills.sh`
 
 ## 链接

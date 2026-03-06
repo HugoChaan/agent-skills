@@ -38,6 +38,20 @@ Each product skill defines its own MCP URIs. Consolidated here for reference:
 | RTM | Quick Start (iOS) | `docs://default/rtm2/ios/get-started/quick-start` |
 | Cloud Recording | Quick Start | `docs://default/cloud-recording/restful/get-started/quick-start` |
 
+### ConvoAI REST API Endpoints
+
+| Endpoint | URI |
+|----------|-----|
+| POST /join (start agent) | `docs://default/convoai/restful/convoai/operations/start-agent` |
+| POST /leave (stop agent) | `docs://default/convoai/restful/convoai/operations/stop-agent` |
+| POST /update (update config) | `docs://default/convoai/restful/convoai/operations/agent-update` |
+| GET query status | `docs://default/convoai/restful/convoai/operations/query-agent-status` |
+| GET agent list | `docs://default/convoai/restful/convoai/operations/get-agent-list` |
+| POST speak | `docs://default/convoai/restful/convoai/operations/agent-speak` |
+| POST interrupt | `docs://default/convoai/restful/convoai/operations/agent-interrupt` |
+| GET history | `docs://default/convoai/restful/convoai/operations/get-history` |
+| All endpoints index | `docs://default/convoai/restful/convoai/operations` |
+
 ## Fallback: Search Then Read
 
 When the URI is unknown, search first:
@@ -60,5 +74,5 @@ Step 2: get-doc-content {"uri": "docs://..."}
 
 **Do NOT call for:**
 - Generation rules (field types, naming conventions) — stable, in skill files
-- Auth patterns — stable, in [general/references/authentication.md](general/references/authentication.md)
+- Auth patterns — stable, in [references/general/credentials-and-auth.md](general/credentials-and-auth.md)
 - Workflow steps — stable, in skill files

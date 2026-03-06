@@ -54,7 +54,7 @@ STOPPED (4)  or  FAILED (6)
 - `FAILED`: unrecoverable — call `/leave` to clean up, then create a new agent
 - `IDLE (0)`: agent created but not yet active (rare, usually transient)
 
-Full state codes → see [references/convoai-restapi.yaml](../references/convoai-restapi.yaml) response schemas
+Full state codes → use MCP: `get-doc-content {"uri": "docs://default/convoai/restful/convoai/operations/query-agent-status"}`
 
 ## ASR → LLM → TTS Handoff
 

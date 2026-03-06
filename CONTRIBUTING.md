@@ -9,17 +9,18 @@ Changes should improve routing accuracy, execution quality, and maintainability.
 ## Required Rules
 
 1. All skill content lives under `skills/shengwang-integration/`.
-2. Every sub-module directory must have one `SKILL.md` entrypoint.
-3. Every `SKILL.md` must include YAML frontmatter with:
+2. The root skill directory has one `SKILL.md` entrypoint with YAML frontmatter.
+3. Sub-module directories use `README.md` (no YAML frontmatter needed).
+4. The root `SKILL.md` must include YAML frontmatter with:
    - `name` (max 64 chars, lowercase kebab-case)
    - `description` (max 1024 chars, includes trigger phrases)
    - `license`
    - `metadata.author`
    - `metadata.version`
-4. Do NOT use `triggers` as a top-level frontmatter field — fold trigger phrases into `description`.
-5. Use relative links for local references.
-6. Put detailed docs under `references/`; keep `SKILL.md` focused on workflow.
-7. Never commit secrets, tokens, or private credentials.
+5. Do NOT use `triggers` as a top-level frontmatter field — fold trigger phrases into `description`.
+6. Use relative links for local references.
+7. Put detailed docs under `references/`; keep `SKILL.md` and `README.md` focused on workflow.
+8. Never commit secrets, tokens, or private credentials.
 
 ## Naming
 

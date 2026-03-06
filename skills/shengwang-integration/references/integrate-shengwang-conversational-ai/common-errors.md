@@ -113,7 +113,7 @@ Agent is RUNNING but not responding to user speech:
 
 ## Additional Error Lookup
 
-For errors not covered here, check [references/convoai-restapi.yaml](../references/convoai-restapi.yaml)
+For errors not covered here, use MCP to fetch the relevant endpoint doc
 for response schemas, or use MCP for broader doc search:
 
 ```

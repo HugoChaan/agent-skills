@@ -8,14 +8,14 @@ Reusable skills for AI coding agents building with the [Shengwang (Agora)](https
 
 | Skill | Product | Description |
 |-------|---------|-------------|
-| [integrate-shengwang-conversational-ai](skills/shengwang-integration/integrate-shengwang-conversational-ai/SKILL.md) | ConvoAI | AI voice agent lifecycle: create/stop/update/query. Supports Go, Java, Python |
-| [integrate-shengwang-rtc](skills/shengwang-integration/integrate-shengwang-rtc/SKILL.md) | RTC SDK | Real-time audio/video calls. Web, Android, iOS, Flutter, and more |
-| [integrate-shengwang-rtm](skills/shengwang-integration/integrate-shengwang-rtm/SKILL.md) | RTM | Real-time messaging, signaling, presence |
-| [integrate-shengwang-cloud-recording](skills/shengwang-integration/integrate-shengwang-cloud-recording/SKILL.md) | Cloud Recording | Server-side recording of RTC sessions |
-| [implement-shengwang-token-on-server](skills/shengwang-integration/implement-shengwang-token-on-server/SKILL.md) | Token Server | Server-side token generation (AccessToken2) |
-| [general](skills/shengwang-integration/general/SKILL.md) | General | Credential management, REST auth patterns |
-| [resource-downloader](skills/shengwang-integration/resource-downloader/SKILL.md) | Tooling | Download SDKs, sample projects, Token Builder |
-| [intake](skills/shengwang-integration/intake/SKILL.md) | Routing | Needs analysis → product recommendation → route to product skill |
+| [integrate-shengwang-conversational-ai](skills/shengwang-integration/references/integrate-shengwang-conversational-ai/README.md) | ConvoAI | AI voice agent lifecycle: create/stop/update/query. Supports Go, Java, Python |
+| [integrate-shengwang-rtc](skills/shengwang-integration/references/integrate-shengwang-rtc/README.md) | RTC SDK | Real-time audio/video calls. Web, Android, iOS, Flutter, and more |
+| [integrate-shengwang-rtm](skills/shengwang-integration/references/integrate-shengwang-rtm/README.md) | RTM | Real-time messaging, signaling, presence |
+| [integrate-shengwang-cloud-recording](skills/shengwang-integration/references/integrate-shengwang-cloud-recording/README.md) | Cloud Recording | Server-side recording of RTC sessions |
+| [implement-shengwang-token-on-server](skills/shengwang-integration/references/implement-shengwang-token-on-server/README.md) | Token Server | Server-side token generation (AccessToken2) |
+| [general](skills/shengwang-integration/references/general/credentials-and-auth.md) | General | Credential management, REST auth patterns |
+| [resource-downloader](skills/shengwang-integration/references/resource-downloader/README.md) | Tooling | Download SDKs, sample projects, Token Builder |
+| [intake](skills/shengwang-integration/intake/README.md) | Routing | Needs analysis → product recommendation → route to product module |
 
 ## Quick Start
 
@@ -105,23 +105,24 @@ shengwang-skills/
 │   └── eval-cases.md          # Evaluation test cases
 └── skills/
     └── shengwang-integration/     # The skill (agentskills.io standard)
-        ├── SKILL.md               # Entry point and router
-        ├── mcp-tools.md           # MCP tool usage guide
+        ├── SKILL.md               # Entry point and router (only SKILL.md)
         ├── intake/                # Needs analysis and product routing
-        ├── general/               # Credentials, REST auth
-        ├── integrate-shengwang-conversational-ai/  # ConvoAI
-        ├── integrate-shengwang-rtc/               # RTC SDK
-        ├── integrate-shengwang-rtm/               # RTM
-        ├── integrate-shengwang-cloud-recording/   # Cloud Recording
-        ├── implement-shengwang-token-on-server/   # Token generation
-        └── resource-downloader/                   # SDK/sample downloads
+        └── references/            # All product modules and shared knowledge
+            ├── mcp-tools.md           # MCP tool usage guide
+            ├── general/               # Credentials, REST auth
+            ├── integrate-shengwang-conversational-ai/  # ConvoAI
+            ├── integrate-shengwang-rtc/               # RTC SDK
+            ├── integrate-shengwang-rtm/               # RTM
+            ├── integrate-shengwang-cloud-recording/   # Cloud Recording
+            ├── implement-shengwang-token-on-server/   # Token generation
+            └── resource-downloader/                   # SDK/sample downloads
 ```
 
 ## Design Philosophy
 
 - Behavior over knowledge: skills teach agents *how to approach* integration; MCP provides *specific APIs*
 - Single responsibility: each skill does one thing
-- Progressive disclosure: SKILL.md serves as navigation; detailed content lives in `references/`
+- Progressive disclosure: SKILL.md serves as navigation; detailed content lives in `references/` and module `README.md` files
 - Explicit failure paths: every skill defines error handling
 - Eval-driven iteration: validate changes against `tests/eval-cases.md`
 
@@ -137,9 +138,10 @@ Checks all SKILL.md frontmatter format and markdown link validity.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Key requirements:
 
-- Every skill directory must have a `SKILL.md` with YAML frontmatter (name, description, metadata.author, metadata.version)
+- The root skill has a `SKILL.md` with YAML frontmatter (name, description, metadata.author, metadata.version)
+- Sub-modules use `README.md` (no frontmatter needed)
 - Directory names use kebab-case
-- Detailed docs go in `references/`; keep SKILL.md concise
+- Detailed docs go in `references/`; keep SKILL.md and README.md concise
 - Run `bash scripts/validate-skills.sh` before submitting
 
 ## Links

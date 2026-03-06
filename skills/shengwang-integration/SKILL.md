@@ -17,16 +17,16 @@ metadata:
 
 ### Step 1: Check if intake can be skipped
 
-Skip [intake/SKILL.md](intake/SKILL.md) and route directly ONLY when ALL of these are true:
+Skip [intake](intake/README.md) and route directly ONLY when ALL of these are true:
 - User names a specific operation (e.g. "stop agent xxx", "generate a token", "download SDK")
 - User provides enough technical details to act immediately (channel name, agent ID, language, etc.)
 - The request maps unambiguously to exactly one skill in the table below
 
 Examples that SKIP intake:
-- "帮我停掉 agent_abc123" → [integrate-shengwang-conversational-ai/SKILL.md](integrate-shengwang-conversational-ai/SKILL.md)
-- "生成一个 RTC token，Go 语言" → [implement-shengwang-token-on-server/SKILL.md](implement-shengwang-token-on-server/SKILL.md)
-- "error 403 是什么意思" → [integrate-shengwang-conversational-ai/troubleshooting](integrate-shengwang-conversational-ai/troubleshooting/common-errors.md)
-- "下载 ConvoAI Go SDK" → [resource-downloader/SKILL.md](resource-downloader/SKILL.md)
+- "帮我停掉 agent_abc123" → [integrate-shengwang-conversational-ai](references/integrate-shengwang-conversational-ai/README.md)
+- "生成一个 RTC token，Go 语言" → [implement-shengwang-token-on-server](references/implement-shengwang-token-on-server/README.md)
+- "error 403 是什么意思" → [integrate-shengwang-conversational-ai/troubleshooting](references/integrate-shengwang-conversational-ai/common-errors.md)
+- "下载 ConvoAI Go SDK" → [resource-downloader](references/resource-downloader/README.md)
 
 Examples that MUST go through intake:
 - "我想做一个 AI 客服" → needs analysis, go to intake
@@ -38,14 +38,14 @@ Examples that MUST go through intake:
 
 | User intent | Route to |
 |-------------|----------|
-| New request, vague, or missing details | [intake/SKILL.md](intake/SKILL.md) |
-| Credentials, AppID, REST auth | [general/SKILL.md](general/SKILL.md) |
-| Download SDK, sample project, Token Builder, GitHub repo | [resource-downloader/SKILL.md](resource-downloader/SKILL.md) |
-| Generate Token, token server, AccessToken2, RTC/RTM auth | [implement-shengwang-token-on-server/SKILL.md](implement-shengwang-token-on-server/SKILL.md) |
-| ConvoAI operation (with details already known) | [integrate-shengwang-conversational-ai/SKILL.md](integrate-shengwang-conversational-ai/SKILL.md) |
-| RTC SDK integration | [integrate-shengwang-rtc/SKILL.md](integrate-shengwang-rtc/SKILL.md) |
-| RTM messaging / signaling | [integrate-shengwang-rtm/SKILL.md](integrate-shengwang-rtm/SKILL.md) |
-| Cloud Recording | [integrate-shengwang-cloud-recording/SKILL.md](integrate-shengwang-cloud-recording/SKILL.md) |
+| New request, vague, or missing details | [intake](intake/README.md) |
+| Credentials, AppID, REST auth | [general](references/general/credentials-and-auth.md) |
+| Download SDK, sample project, Token Builder, GitHub repo | [resource-downloader](references/resource-downloader/README.md) |
+| Generate Token, token server, AccessToken2, RTC/RTM auth | [implement-shengwang-token-on-server](references/implement-shengwang-token-on-server/README.md) |
+| ConvoAI operation (with details already known) | [integrate-shengwang-conversational-ai](references/integrate-shengwang-conversational-ai/README.md) |
+| RTC SDK integration | [integrate-shengwang-rtc](references/integrate-shengwang-rtc/README.md) |
+| RTM messaging / signaling | [integrate-shengwang-rtm](references/integrate-shengwang-rtm/README.md) |
+| Cloud Recording | [integrate-shengwang-cloud-recording](references/integrate-shengwang-cloud-recording/README.md) |
 
 ## Links
 

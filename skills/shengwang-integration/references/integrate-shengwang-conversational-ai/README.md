@@ -1,24 +1,10 @@
----
-name: integrate-shengwang-conversational-ai
-description: |
-  Guides integration of Shengwang (Agora) ConvoAI — real-time voice AI agents.
-  Handles agent lifecycle operations (create/stop/update/query/list)
-  and code generation for Go, Java, and REST API (curl/Python/JS).
-  Use when the user asks to create, stop, update, or query a ConvoAI agent,
-  or mentions convoai, voice bot, AI语音助手, 对话式AI.
-license: MIT
-metadata:
-  author: shengwang
-  version: "1.0.0"
----
-
 # Shengwang Conversational AI Engine (ConvoAI)
 
 ## Routing Guardrails
 
-> Intake skip/require logic is defined in [skills/SKILL.md](../SKILL.md) (root router).
+> Intake skip/require logic is defined in [SKILL.md](../../SKILL.md) (root router).
 > If you arrived here without a structured spec and the request is vague,
-> redirect to [intake/SKILL.md](../intake/SKILL.md).
+> redirect to [intake](../../intake/README.md).
 
 - From intake with structured spec → skip to Workflow step 2.
 - Direct operation with enough details (e.g. "stop agent xxx") → proceed directly.
@@ -29,12 +15,9 @@ metadata:
 
 | Priority | Source | Use for |
 |----------|--------|---------|
-| 1 | [references/convoai-restapi.yaml](references/convoai-restapi.yaml) | API endpoints, field definitions, vendor params (AUTHORITATIVE) |
-| 2 | Generation Rules (below) | Field type gotchas, naming, error handling — things the spec can't express |
-| 3 | MCP Quick Start (see table below) | **MUST fetch before generating code** — runnable examples, integration flow |
-| 4 | MCP `search-docs` → `get-doc-content` | Everything else (release notes, advanced guides, non-ConvoAI topics) |
-
-**Decision:** Local files (1+2) first. Need working code → must call MCP (3). Topic outside ConvoAI → MCP search (4).
+| 1 | [convoai-restapi.md](convoai-restapi.md) | Stable API structure: endpoints, lifecycle, MCP URI index |
+| 2 | MCP ConvoAI REST API docs (per-endpoint URIs in convoai-restapi.md) | Full request/response schemas, vendor params (AUTHORITATIVE) |
+| 3 | Generation Rules (below) | Field type gotchas, naming, error handling — things the spec can't express |
 
 ### Quick Start URIs (MCP)
 
@@ -44,7 +27,7 @@ metadata:
 | Go | `docs://default/convoai/restful/get-started/quick-start-go` |
 | Java | `docs://default/convoai/restful/get-started/quick-start-java` |
 
-**MCP fallback:** If unavailable, use OpenAPI spec + Generation Rules, and tell the user to verify against https://doc.shengwang.cn/doc/convoai/restful/get-started/quick-start
+**MCP fallback:** If unavailable, use Generation Rules below + fallback URL, and tell the user to verify against https://doc.shengwang.cn/doc/convoai/restful/get-started/quick-start
 
 ---
 
@@ -53,12 +36,12 @@ metadata:
 ### Step 1: Confirm Credentials & Service Activation
 
 Need `AGORA_APP_ID`, `AGORA_CUSTOMER_KEY`, `AGORA_CUSTOMER_SECRET`.
-Missing? → [general/references/credentials.md](../general/references/credentials.md)
+Missing? → [general/credentials-and-auth.md](../general/credentials-and-auth.md)
 
 > **ConvoAI requires separate activation.** The user must enable ConvoAI for their project in [Shengwang Console](https://console.shengwang.cn/), otherwise API calls return 403.
-> Details → [concepts/authentication.md](concepts/authentication.md#enabling-convoai-service)
+> Details → [authentication.md](authentication.md#enabling-convoai-service)
 
-Need Go/Java SDK or AgoraDynamicKey? → [resource-downloader/SKILL.md](../resource-downloader/SKILL.md)
+Need Go/Java SDK or AgoraDynamicKey? → [resource-downloader](../resource-downloader/README.md)
 
 ### Step 2: Fetch Quick Start via MCP (MANDATORY)
 
@@ -68,7 +51,7 @@ Read the returned doc fully before writing any code.
 ### Step 3: Generate Code
 
 1. Quick start doc as primary code reference
-2. Consult OpenAPI spec for detailed field definitions
+2. Consult MCP API endpoint docs for detailed field definitions (see Resource Lookup table)
 3. Apply Generation Rules (below)
 4. Apply user's intake spec (language, LLM, TTS vendor, etc.)
 
@@ -88,11 +71,11 @@ Read the returned doc fully before writing any code.
 **Architecture:**
 `User Voice → RTC Channel → ASR → LLM → TTS → RTC Channel → User hears AI`
 Agent joins RTC channel via REST API (no client-side SDK for the agent).
-Details → [concepts/architecture.md](concepts/architecture.md)
+Details → [architecture.md](architecture.md)
 
 **Auth:** HTTP Basic Auth on all ConvoAI REST calls:
 `Authorization: Basic base64("{CUSTOMER_KEY}:{CUSTOMER_SECRET}")`
-Details → [concepts/authentication.md](concepts/authentication.md)
+Details → [authentication.md](authentication.md)
 
 **Base URL:** `https://api.agora.io/cn/api/conversational-ai-agent/v2/projects/{AGORA_APP_ID}`
 
@@ -124,4 +107,4 @@ Stable constraints that do NOT change with API updates. Always apply.
 - 409: extract existing `agent_id` or generate new name, retry
 - 503/504: exponential backoff, max 3 retries
 - Always parse `detail` + `reason` from error responses
-- Diagnosis → [troubleshooting/common-errors.md](troubleshooting/common-errors.md)
+- Diagnosis → [common-errors.md](common-errors.md)

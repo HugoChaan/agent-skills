@@ -1,24 +1,9 @@
----
-name: shengwang-intake
-description: |
-  First skill to run for any Shengwang (Agora)-related request. Understands
-  the full product landscape, identifies user needs, recommends the optimal
-  product combination, and routes to product-specific intake or skill.
-  Use when the user mentions Shengwang, Agora, 声网, or describes any real-time
-  communication / AI use case such as voice agent, video call, live streaming,
-  chat, recording, ConvoAI, RTC, RTM, or says "我想做一个", "帮我接入".
-license: MIT
-metadata:
-  author: shengwang
-  version: "1.0.0"
----
-
 # Shengwang Intake — Product Routing & Needs Analysis
 
 First entry point for all Agora-related requests. This skill understands the full
 product landscape, identifies what the user needs, and routes to the right place.
 
-> **Note:** Skip-intake logic is defined in [skills/SKILL.md](../SKILL.md) (root router).
+> **Note:** Skip-intake logic is defined in [SKILL.md](../SKILL.md) (root router).
 > If you are here, the root router has already determined that intake is needed.
 > Do NOT second-guess the routing decision — proceed with the intake flow below.
 
@@ -130,13 +115,13 @@ For each identified product, route to its detail collection:
 
 | Product | Detail intake | Product skill |
 |---------|--------------|---------------|
-| ConvoAI | [intake/convoai.md](convoai.md) | [integrate-shengwang-conversational-ai/SKILL.md](../integrate-shengwang-conversational-ai/SKILL.md) |
-| RTC SDK | — | [integrate-shengwang-rtc/SKILL.md](../integrate-shengwang-rtc/SKILL.md) |
-| RTM | — | [integrate-shengwang-rtm/SKILL.md](../integrate-shengwang-rtm/SKILL.md) |
-| Cloud Recording | — | [integrate-shengwang-cloud-recording/SKILL.md](../integrate-shengwang-cloud-recording/SKILL.md) |
-| Credentials / Auth | — | [general/SKILL.md](../general/SKILL.md) |
-| Token generation | — | [implement-shengwang-token-on-server/SKILL.md](../implement-shengwang-token-on-server/SKILL.md) |
-| Download SDK | — | [resource-downloader/SKILL.md](../resource-downloader/SKILL.md) |
+| ConvoAI | [intake/convoai.md](convoai.md) | [integrate-shengwang-conversational-ai](../references/integrate-shengwang-conversational-ai/README.md) |
+| RTC SDK | — | [integrate-shengwang-rtc](../references/integrate-shengwang-rtc/README.md) |
+| RTM | — | [integrate-shengwang-rtm](../references/integrate-shengwang-rtm/README.md) |
+| Cloud Recording | — | [integrate-shengwang-cloud-recording](../references/integrate-shengwang-cloud-recording/README.md) |
+| Credentials / Auth | — | [general](../references/general/credentials-and-auth.md) |
+| Token generation | — | [implement-shengwang-token-on-server](../references/implement-shengwang-token-on-server/README.md) |
+| Download SDK | — | [resource-downloader](../references/resource-downloader/README.md) |
 
 When multiple products are needed, run the primary product's intake first,
 then address supporting products in order.
@@ -153,8 +138,8 @@ For common patterns, skip the full intake flow:
 | "视频通话" / "video call" / "直播" | → RTC SDK docs directly |
 | "聊天" / "消息" / "chat" | → RTM docs directly |
 | "录制" / "recording" | → Cloud Recording docs directly |
-| "生成token" / "token server" | → [implement-shengwang-token-on-server/SKILL.md](../implement-shengwang-token-on-server/SKILL.md) directly |
-| "下载SDK" / "download" | → [resource-downloader/SKILL.md](../resource-downloader/SKILL.md) directly |
+| "生成token" / "token server" | → [implement-shengwang-token-on-server](../references/implement-shengwang-token-on-server/README.md) directly |
+| "下载SDK" / "download" | → [resource-downloader](../references/resource-downloader/README.md) directly |
 
 ---
 
