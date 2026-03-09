@@ -38,7 +38,7 @@ For each case:
 ### R-04: Error query skips intake
 
 - User Input: "ConvoAI returned 403, what does it mean"
-- Expected Behavior: Route directly to integrate-shengwang-conversational-ai/common-errors.md
+- Expected Behavior: Route directly to convoai/common-errors.md
 - Pass Criteria: Model provides the three causes of 403 and their fixes
 - Result: ___
 
@@ -52,22 +52,22 @@ For each case:
 ### R-06: Token request routes directly
 
 - User Input: "Generate an RTC token in Go"
-- Expected Behavior: Route directly to implement-shengwang-token-on-server
+- Expected Behavior: Route directly to token-server
 - Pass Criteria: Model generates Go token code without going through intake
 - Result: ___
 
 ### R-07: RTC request routes to RTC module
 
 - User Input: "How do I implement a video call on Web"
-- Expected Behavior: Route to integrate-shengwang-rtc, call MCP to get Web quick start
+- Expected Behavior: Route to rtc, call MCP to get Web quick start
 - Pass Criteria: Model provides integration guidance based on RTC Web SDK
 - Result: ___
 
 ### R-08: Download request routes directly
 
 - User Input: "Download ConvoAI Go SDK"
-- Expected Behavior: Route directly to resource-downloader
-- Pass Criteria: Model runs downloader script or provides correct URL
+- Expected Behavior: Route to relevant product module, provide correct URL
+- Pass Criteria: Model provides correct URL or runs git clone
 - Result: ___
 
 ---
@@ -145,10 +145,10 @@ For each case:
 
 ## 4. Failure Path Coverage
 
-### F-01: resource-downloader failure
+### F-01: Download failure
 
 - User Input: "Download https://github.com/AgoraIO/nonexistent-repo"
-- Expected Behavior: Report download failure, suggest checking URL or picking from Common Resources table
+- Expected Behavior: Report download failure, suggest checking URL
 - Pass Criteria: Does not fail silently or fabricate content
 - Result: ___
 

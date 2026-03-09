@@ -20,7 +20,7 @@ Missing? → [general/credentials-and-auth.md](../general/credentials-and-auth.m
 
 All language implementations live in one repo: `https://github.com/AgoraIO/Tools`
 
-Use [resource-downloader](../resource-downloader/README.md) or clone manually:
+Clone the repo:
 
 ```bash
 git clone --depth 1 https://github.com/AgoraIO/Tools.git
@@ -141,7 +141,7 @@ When using token with ConvoAI `/join`:
 | Token returns empty string | Wrong library version or params | Verify AgoraDynamicKey uses AccessToken2. Check `channelName` is not nil. |
 | `BuildTokenWithUid` not found | Wrong import path | Must use `rtctokenbuilder2` (v2), not v1. Check language-specific path in table above. |
 | Client `ERR_INVALID_TOKEN` | Token mismatch | Verify: same `channelName`, same `uid`, not expired, correct `APP_CERTIFICATE`. |
-| Download fails | Network or URL issue | Use [resource-downloader](../resource-downloader/README.md) or clone manually from https://github.com/AgoraIO/Tools. |
+| Download fails | Network or URL issue | Clone manually from https://github.com/AgoraIO/Tools. |
 
 Never fall back to hardcoded tokens or skip authentication. Report the error and guide the user to fix the root cause.
 

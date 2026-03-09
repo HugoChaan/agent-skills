@@ -8,13 +8,12 @@ AI coding agent 的声网平台集成技能包。帮助 agent 更准确地完成
 
 | Skill | 产品 | 说明 |
 |-------|------|------|
-| [integrate-shengwang-conversational-ai](skills/shengwang-integration/references/integrate-shengwang-conversational-ai/README.md) | ConvoAI | AI 语音 agent 全流程：创建/停止/更新/查询，支持 Go/Java/Python |
-| [integrate-shengwang-rtc](skills/shengwang-integration/references/integrate-shengwang-rtc/README.md) | RTC SDK | 实时音视频通话，支持 Web/Android/iOS/Flutter 等 |
-| [integrate-shengwang-rtm](skills/shengwang-integration/references/integrate-shengwang-rtm/README.md) | RTM | 实时消息、信令、Presence |
-| [integrate-shengwang-cloud-recording](skills/shengwang-integration/references/integrate-shengwang-cloud-recording/README.md) | Cloud Recording | 服务端录制 RTC 会话 |
-| [implement-shengwang-token-on-server](skills/shengwang-integration/references/implement-shengwang-token-on-server/README.md) | Token Server | 服务端 Token 生成（AccessToken2） |
+| [conversational-ai](skills/shengwang-integration/references/conversational-ai/README.md) | ConvoAI | AI 语音 agent 全流程：创建/停止/更新/查询，支持 Go/Java/Python |
+| [rtc](skills/shengwang-integration/references/rtc/README.md) | RTC SDK | 实时音视频通话，支持 Web/Android/iOS/Flutter 等 |
+| [rtm](skills/shengwang-integration/references/rtm/README.md) | RTM | 实时消息、信令、Presence |
+| [cloud-recording](skills/shengwang-integration/references/cloud-recording/README.md) | Cloud Recording | 服务端录制 RTC 会话 |
+| [token-server](skills/shengwang-integration/references/token-server/README.md) | Token Server | 服务端 Token 生成（AccessToken2） |
 | [general](skills/shengwang-integration/references/general/credentials-and-auth.md) | 通用 | 凭证管理、REST 认证模式 |
-| [resource-downloader](skills/shengwang-integration/references/resource-downloader/README.md) | 工具 | 下载 SDK、示例项目、Token Builder |
 | [intake](skills/shengwang-integration/intake/README.md) | 路由 | 需求分析 → 产品推荐 → 路由到具体模块 |
 
 ## 快速开始
@@ -109,12 +108,12 @@ shengwang-skills/
         └── references/            # 所有产品模块和共享知识
             ├── mcp-tools.md           # MCP 工具使用指南
             ├── general/               # 凭证、REST 认证
-            ├── integrate-shengwang-conversational-ai/  # ConvoAI
-            ├── integrate-shengwang-rtc/               # RTC SDK
-            ├── integrate-shengwang-rtm/               # RTM
-            ├── integrate-shengwang-cloud-recording/   # Cloud Recording
-            ├── implement-shengwang-token-on-server/   # Token 生成
-            └── resource-downloader/                   # SDK/示例下载
+            ├── conversational-ai/                  # ConvoAI
+            ├── rtc/                               # RTC SDK
+            ├── rtm/                               # RTM
+            ├── cloud-recording/                   # Cloud Recording
+            ├── token-server/                      # Token 生成
+            └── mcp-tools.md               # MCP 工具使用指南
 ```
 
 ## 设计原则

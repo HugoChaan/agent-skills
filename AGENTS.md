@@ -19,12 +19,12 @@ skills/
     └── references/                # All product modules and shared knowledge
         ├── mcp-tools.md               # MCP tool usage guide (internal)
         ├── general/               # Credentials, REST auth (shared)
-        ├── integrate-shengwang-conversational-ai/  # ConvoAI
-        ├── integrate-shengwang-rtc/               # RTC SDK
-        ├── integrate-shengwang-rtm/               # RTM
-        ├── integrate-shengwang-cloud-recording/   # Cloud Recording
-        ├── implement-shengwang-token-on-server/   # Token generation
-        └── resource-downloader/                   # SDK/sample downloads
+        ├── conversational-ai/                  # ConvoAI
+        ├── rtc/                               # RTC SDK
+        ├── rtm/                               # RTM
+        ├── cloud-recording/                   # Cloud Recording
+        ├── token-server/                      # Token generation
+        └── mcp-tools.md               # MCP tool usage guide (internal)
 ```
 
 ## MCP Integration

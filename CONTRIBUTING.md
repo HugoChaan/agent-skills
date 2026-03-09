@@ -26,7 +26,7 @@ Changes should improve routing accuracy, execution quality, and maintainability.
 
 - Directory names: lowercase kebab-case.
 - Skill names (`frontmatter.name`): unique across repository.
-- Prefer `shengwang-` or `integrate-shengwang-` prefix.
+- Prefer `shengwang-` prefix for skill names.
 
 ## Pull Request Checklist
 

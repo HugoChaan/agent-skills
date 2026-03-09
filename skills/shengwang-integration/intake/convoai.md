@@ -215,7 +215,7 @@ MCP Status:       [Installed / Not installed]
 
 ## Route After Collection
 
-Pass the structured spec to [integrate-shengwang-conversational-ai](../references/integrate-shengwang-conversational-ai/README.md),
+Pass the structured spec to [conversational-ai](../references/conversational-ai/README.md),
 skipping questions already answered.
 
 | Detail | Routing hint |
@@ -223,7 +223,7 @@ skipping questions already answered.
 | Dev = Go | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-go"}` |
 | Dev = Java | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-java"}` |
 | Dev = Python/curl | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start"}` |
-| App Certificate = Enabled | [implement-shengwang-token-on-server](../references/implement-shengwang-token-on-server/README.md) to generate RTC Token |
-| Needs Go/Java SDK | [resource-downloader](../references/resource-downloader/README.md) to download REST client SDK |
-| Needs Token Builder | [resource-downloader](../references/resource-downloader/README.md) to download AgoraDynamicKey |
+| App Certificate = Enabled | [token-server](../references/token-server/README.md) to generate RTC Token |
+| Needs Go/Java SDK | See Demo Projects in [conversational-ai](../references/conversational-ai/README.md) |
+| Needs Token Builder | See [token-server](../references/token-server/README.md) |
 | MCP = Not installed | Use Generation Rules + fallback URL in output |

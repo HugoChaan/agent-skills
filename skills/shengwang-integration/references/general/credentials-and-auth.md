@@ -56,7 +56,7 @@ For language-specific auth patterns (Go, Java, Python, Node.js), refer to the MC
 
 ## RTC / RTM Token
 
-Token generation is separate from REST auth. See [implement-shengwang-token-on-server](../implement-shengwang-token-on-server/README.md).
+Token generation is separate from REST auth. See [token-server](../token-server/README.md).
 
 ## MCP Docs
 

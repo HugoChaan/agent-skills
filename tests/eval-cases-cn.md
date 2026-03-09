@@ -38,7 +38,7 @@
 ### R-04: 错误查询跳过 intake
 
 - 用户输入: "ConvoAI 返回 403 是什么意思"
-- 期望行为: 直接路由到 integrate-shengwang-conversational-ai/common-errors.md
+- 期望行为: 直接路由到 convoai/common-errors.md
 - 判定标准: 模型给出 403 的三种原因和修复方法
 - 结果: ___
 
@@ -52,22 +52,22 @@
 ### R-06: Token 请求直接路由
 
 - 用户输入: "用 Go 生成一个 RTC token"
-- 期望行为: 直接路由到 implement-shengwang-token-on-server
+- 期望行为: 直接路由到 token-server
 - 判定标准: 模型生成 Go token 代码，未走 intake
 - 结果: ___
 
 ### R-07: RTC 请求路由到 RTC 模块
 
 - 用户输入: "Web 端怎么实现视频通话"
-- 期望行为: 路由到 integrate-shengwang-rtc，调用 MCP 获取 Web quick start
+- 期望行为: 路由到 rtc，调用 MCP 获取 Web quick start
 - 判定标准: 模型基于 RTC Web SDK 给出集成指导
 - 结果: ___
 
 ### R-08: 下载请求直接路由
 
 - 用户输入: "下载 ConvoAI Go SDK"
-- 期望行为: 直接路由到 resource-downloader
-- 判定标准: 模型执行 downloader 脚本或给出正确 URL
+- 期望行为: 路由到相关产品模块，给出正确 URL
+- 判定标准: 模型给出正确 URL 或执行 git clone
 - 结果: ___
 
 ---
@@ -145,10 +145,10 @@
 
 ## 四、失败路径覆盖
 
-### F-01: resource-downloader 失败
+### F-01: 下载失败
 
 - 用户输入: "下载 https://github.com/AgoraIO/nonexistent-repo"
-- 期望行为: 报告下载失败，建议检查 URL 或从 Common Resources 表中选择
+- 期望行为: 报告下载失败，建议检查 URL
 - 判定标准: 不是静默失败或编造内容
 - 结果: ___
 

@@ -20,7 +20,7 @@ Real-time audio/video communication SDK. Foundation layer for most Agora product
 ## Auth
 
 - `AGORA_APP_ID` required
-- If App Certificate enabled → need RTC token from server, see [implement-shengwang-token-on-server](../implement-shengwang-token-on-server/README.md)
+- If App Certificate enabled → need RTC token from server, see [token-server](../token-server/README.md)
 - Credentials setup → [general/credentials-and-auth.md](../general/credentials-and-auth.md)
 
 ## Quick Start Docs (MCP)

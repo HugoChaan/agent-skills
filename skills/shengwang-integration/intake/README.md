@@ -121,13 +121,13 @@ For each identified product, route to its detail collection:
 
 | Product | Detail intake | Product module |
 |---------|--------------|---------------|
-| ConvoAI | [intake/convoai.md](convoai.md) | [integrate-shengwang-conversational-ai](../references/integrate-shengwang-conversational-ai/README.md) |
-| RTC SDK | — | [integrate-shengwang-rtc](../references/integrate-shengwang-rtc/README.md) |
-| RTM | — | [integrate-shengwang-rtm](../references/integrate-shengwang-rtm/README.md) |
-| Cloud Recording | — | [integrate-shengwang-cloud-recording](../references/integrate-shengwang-cloud-recording/README.md) |
+| ConvoAI | [intake/convoai.md](convoai.md) | [conversational-ai](../references/conversational-ai/README.md) |
+| RTC SDK | — | [rtc](../references/rtc/README.md) |
+| RTM | — | [rtm](../references/rtm/README.md) |
+| Cloud Recording | — | [cloud-recording](../references/cloud-recording/README.md) |
 | Credentials / Auth | — | [general](../references/general/credentials-and-auth.md) |
-| Token generation | — | [implement-shengwang-token-on-server](../references/implement-shengwang-token-on-server/README.md) |
-| Download SDK | — | [resource-downloader](../references/resource-downloader/README.md) |
+| Token generation | — | [token-server](../references/token-server/README.md) |
+| Download SDK | — | Route to the relevant product module |
 
 When multiple products are needed, run the primary product's intake first,
 then address supporting products in order.

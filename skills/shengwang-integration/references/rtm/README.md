@@ -30,7 +30,7 @@ Cross-platform: Web, Android, iOS, macOS, Windows, Flutter, React Native, Electr
 | RTC | `RtcTokenBuilder2` | `BuildTokenWithUid` |
 | RTM | `RtmTokenBuilder2` | `BuildToken` |
 
-Both in the same AgoraDynamicKey library. See [implement-shengwang-token-on-server](../implement-shengwang-token-on-server/README.md)
+Both in the same AgoraDynamicKey library. See [token-server](../token-server/README.md)
 
 - Credentials setup → [general/credentials-and-auth.md](../general/credentials-and-auth.md)
 

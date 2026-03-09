@@ -19,7 +19,7 @@ User Device ◄── audio ── RTC Channel ◄── ConvoAI Agent
 - ConvoAI requires separate activation in [Shengwang Console](https://console.shengwang.cn/) — 403 without it
 - The `token` field in `/join` is for the RTC channel, NOT for REST auth:
   - App Certificate not enabled → `""`
-  - App Certificate enabled → generate via [implement-shengwang-token-on-server](../implement-shengwang-token-on-server/README.md)
+  - App Certificate enabled → generate via [token-server](../token-server/README.md)
 - Credentials → [general/credentials-and-auth.md](../general/credentials-and-auth.md)
 
 ## Quick Start Docs (MCP)
