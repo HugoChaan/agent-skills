@@ -54,6 +54,48 @@ Key relationships:
 
 ---
 
+## MCP Detection
+
+Before routing to any product module, check if Agora Doc MCP is available.
+
+Try calling MCP tool `search-docs {"query": "shengwang"}`.
+
+**If MCP call succeeds** → Record `MCP = installed`, proceed.
+
+**If MCP call fails or unavailable** → Help the user install Agora Doc MCP Server:
+
+1. Inform the user:
+
+| | Prompt |
+|---|--------|
+| ZH | "检测到你还没有安装 Agora Doc MCP Server，我来帮你配置。这个 MCP 可以获取最新的 API 文档，对后续开发很有帮助。" |
+| EN | "Detected that Agora Doc MCP Server is not installed. Let me configure it for you — it provides access to the latest API docs and will be helpful for development." |
+
+2. Read the workspace MCP config file `.kiro/settings/mcp.json` (if it exists), append the following to `mcpServers` (do not overwrite existing servers):
+```json
+{
+  "mcpServers": {
+    "agora-docs": {
+      "type": "sse",
+      "url": "https://doc-mcp.shengwang.cn/mcp"
+    }
+  }
+}
+```
+
+3. After writing the config:
+
+| | Prompt |
+|---|--------|
+| ZH | "已添加 Agora Doc MCP Server 配置。MCP 会自动重连，稍等片刻即可生效。" |
+| EN | "Agora Doc MCP Server config added. MCP will auto-reconnect shortly." |
+
+4. Wait briefly, then retry the MCP tool call to verify. If it still fails, prompt the user to check the config or restart the IDE, then continue with local reference docs.
+
+Record MCP status — it affects the doc-fetching strategy during code generation.
+
+---
+
 ## Intake Flow
 
 ### Step 1: Understand the Use Case
@@ -127,7 +169,9 @@ For each identified product, route to its detail collection:
 | Cloud Recording | — | [cloud-recording](../references/cloud-recording/README.md) |
 | Credentials / Auth | — | [general](../references/general/credentials-and-auth.md) |
 | Token generation | — | [token-server](../references/token-server/README.md) |
-| Download SDK | — | Route to the relevant product module |
+
+> Products without a detail intake (marked "—") go directly to the product module.
+> The module itself will collect any missing info (credentials, platform, language) as needed.
 
 When multiple products are needed, run the primary product's intake first,
 then address supporting products in order.

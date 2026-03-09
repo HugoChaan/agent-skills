@@ -24,6 +24,7 @@ Instead, generate the structured spec directly from what they said, fill default
 missing, and present it for confirmation.
 
 Ask **one at a time** only when needed. Skip any question the user already answered during main intake.
+MCP status is already determined by the main intake — do not re-check here.
 
 ### Q1 — Credentials & App Certificate
 
@@ -79,7 +80,8 @@ Ask **one at a time** only when needed. Skip any question the user already answe
 > - B. 字节跳动（bytedance）
 > - C. 深度求索（deepseek）
 > - D. 腾讯（tencent）
-> - E. 用默认的就行
+> - E. OpenAI（openai）
+> - F. 用默认的就行
 
 **EN:**
 > "Which LLM would you like to use?"
@@ -87,7 +89,8 @@ Ask **one at a time** only when needed. Skip any question the user already answe
 > - B. ByteDance (bytedance)
 > - C. DeepSeek (deepseek)
 > - D. Tencent (tencent)
-> - E. Use the default
+> - E. OpenAI (openai)
+> - F. Use the default
 
 **Default:** deepseek
 
@@ -115,7 +118,27 @@ Ask **one at a time** only when needed. Skip any question the user already answe
 
 **Default:** bytedance (Volcengine TTS)
 
-### Q4 — Development language
+### Q4 — ASR Language
+
+If the user's use case clearly involves a specific language (e.g. "英文客服", "English support bot"), infer the ASR language automatically and skip this question.
+
+Otherwise ask:
+
+**ZH:**
+> "用户主要说什么语言？"
+> - A. 中文（zh-CN，支持中英混合）
+> - B. 英文（en-US）
+> - C. 其他（请说明）
+
+**EN:**
+> "What language will users primarily speak?"
+> - A. Chinese (zh-CN, supports Chinese-English mix)
+> - B. English (en-US)
+> - C. Other (please specify)
+
+**Default:** zh-CN
+
+### Q5 — Development language
 
 **ZH:**
 > "你用什么语言开发服务端？"
@@ -127,44 +150,6 @@ Options (same for both):
 > - A. Go
 > - B. Java
 > - C. Python / JavaScript / curl
-
-### Q5 — MCP Status
-
-Try calling MCP tool `search-docs {"query": "convoai"}` to detect if MCP is available.
-
-**If MCP call succeeds** → Record `MCP = installed`, skip this question.
-
-**If MCP call fails or unavailable** → Help the user install Agora Doc MCP Server:
-
-1. Inform the user:
-
-| | Prompt |
-|---|--------|
-| ZH | "检测到你还没有安装 Agora Doc MCP Server，我来帮你配置。这个 MCP 可以获取最新的 API 文档，对后续开发很有帮助。" |
-| EN | "Detected that Agora Doc MCP Server is not installed. Let me configure it for you — it provides access to the latest API docs and will be helpful for development." |
-
-2. Read the workspace MCP config file `.kiro/settings/mcp.json` (if it exists), append the following to `mcpServers` (do not overwrite existing servers):
-```json
-{
-  "mcpServers": {
-    "agora-docs": {
-      "type": "sse",
-      "url": "https://doc-mcp.shengwang.cn/mcp"
-    }
-  }
-}
-```
-
-3. After writing the config:
-
-| | Prompt |
-|---|--------|
-| ZH | "已添加 Agora Doc MCP Server 配置。MCP 会自动重连，稍等片刻即可生效。" |
-| EN | "Agora Doc MCP Server config added. MCP will auto-reconnect shortly." |
-
-4. Wait briefly, then retry the MCP tool call to verify. If it still fails, prompt the user to check the config or restart the IDE, then continue with local reference docs.
-
-Record MCP status — it affects the doc-fetching strategy during code generation.
 
 ---
 
@@ -178,7 +163,8 @@ ConvoAI 需求规格
 App Certificate： [已开启 / 未开启]
 Token：           [需要生成 / 空字符串]
 ASR：             [fengming (default) / tencent / microsoft / xfyun / xfyun_bigmodel / xfyun_dialect]
-LLM：             [aliyun / bytedance / deepseek / tencent]
+ASR 语言：        [zh-CN / en-US / ja-JP / ko-KR / ...]
+LLM：             [aliyun / bytedance / deepseek / tencent / openai]
 TTS：             [bytedance (default) / minimax / tencent / microsoft / cosyvoice / stepfun]
 开发语言：        [Go / Java / Python/curl]
 MCP 状态：        [已安装 / 未安装]
@@ -193,7 +179,8 @@ Credentials:      [Ready / Need to create]
 App Certificate:  [Enabled / Not enabled]
 Token:            [Need to generate / Empty string]
 ASR:              [fengming (default) / tencent / microsoft / xfyun / xfyun_bigmodel / xfyun_dialect]
-LLM:              [aliyun / bytedance / deepseek / tencent]
+ASR Language:     [zh-CN / en-US / ja-JP / ko-KR / ...]
+LLM:              [aliyun / bytedance / deepseek / tencent / openai]
 TTS:              [bytedance (default) / minimax / tencent / microsoft / cosyvoice / stepfun]
 Dev Language:     [Go / Java / Python/curl]
 MCP Status:       [Installed / Not installed]
@@ -205,25 +192,21 @@ MCP Status:       [Installed / Not installed]
 | Field | Default | Notes (ZH) | Notes (EN) |
 |-------|---------|------------|------------|
 | App Certificate | Not enabled | 如果用户不确定，按未开启处理，提醒后续开启需改传 Token | If user is unsure, treat as not enabled; remind them to pass Token if enabled later |
-| ASR vendor | `fengming` | 声网凤鸣 ASR，默认 zh-CN | Agora Fengming ASR, default zh-CN |
-| ASR language | `zh-CN` | 中文（支持中英混合） | Chinese (supports Chinese-English mix) |
-| LLM vendor | `deepseek` | 如用户选 E 则使用此默认值 | Used when user picks E (default) |
+| ASR vendor | `fengming` | 声网凤鸣 ASR | Agora Fengming ASR |
+| ASR language | `zh-CN` | 中文（支持中英混合）；根据用户场景推断，英文场景用 `en-US` | Chinese (supports Chinese-English mix); infer from use case, use `en-US` for English scenarios |
+| LLM vendor | `deepseek` | 如用户选默认则使用此值 | Used when user picks default |
 | TTS vendor | `bytedance` | 火山引擎 TTS | Volcengine TTS |
-| MCP | Not installed | 自动帮用户安装配置，安装失败时降级到 Generation Rules + fallback URL | Auto-install config; fall back to Generation Rules + fallback URL if install fails |
 
 > ASR/TTS/LLM valid values come from MCP API docs — use `get-doc-content {"uri": "docs://default/convoai/restful/convoai/operations/start-agent"}` for the /join schema, or `search-docs {"query": "convoai vendor"}` for vendor params. Do not invent values.
 
 ## Route After Collection
 
-Pass the structured spec to [conversational-ai](../references/conversational-ai/README.md),
-skipping questions already answered.
+Pass the structured spec to [conversational-ai](../references/conversational-ai/README.md).
+The product module will use the spec to fetch the right MCP docs and generate code.
 
-| Detail | Routing hint |
-|--------|-------------|
-| Dev = Go | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-go"}` |
-| Dev = Java | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start-java"}` |
-| Dev = Python/curl | ConvoAI README.md → MCP `get-doc-content {"uri": "docs://default/convoai/restful/get-started/quick-start"}` |
-| App Certificate = Enabled | [token-server](../references/token-server/README.md) to generate RTC Token |
-| Needs Go/Java SDK | See Demo Projects in [conversational-ai](../references/conversational-ai/README.md) |
-| Needs Token Builder | See [token-server](../references/token-server/README.md) |
-| MCP = Not installed | Use Generation Rules + fallback URL in output |
+Key routing hints:
+- Dev = Go → MCP URI `docs://default/convoai/restful/get-started/quick-start-go`
+- Dev = Java → MCP URI `docs://default/convoai/restful/get-started/quick-start-java`
+- Dev = Python/curl → MCP URI `docs://default/convoai/restful/get-started/quick-start`
+- App Certificate = Enabled → also run [token-server](../references/token-server/README.md)
+- MCP = Not installed → use Generation Rules + fallback URL
