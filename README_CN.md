@@ -23,7 +23,7 @@ AI coding agent 的声网平台集成技能包。帮助 agent 更准确地完成
 ### 方式 A：Skills CLI（agentskills.io 标准）
 
 ```bash
-npx skills add HugoChaan/agent-skills
+npx skills add Shengwang-Community/skills
 ```
 
 ### 方式 B：Git clone
@@ -32,10 +32,10 @@ npx skills add HugoChaan/agent-skills
 
 ```bash
 # Claude Code
-git clone https://github.com/HugoChaan/agent-skills.git .claude/skills/shengwang-skills
+git clone https://github.com/Shengwang-Community/skills.git .claude/skills/shengwang-skills
 
 # Kiro
-git clone https://github.com/HugoChaan/agent-skills.git .kiro/skills/shengwang-skills
+git clone https://github.com/Shengwang-Community/skills.git .kiro/skills/shengwang-skills
 ```
 
 ### 2. 配置 MCP（推荐）
@@ -146,4 +146,4 @@ bash scripts/validate-skills.sh
 
 - [Shengwang Console](https://console.shengwang.cn/)
 - [声网文档](https://doc.shengwang.cn/)
-- [GitHub](https://github.com/AgoraIO-Community)
+- [GitHub](https://github.com/Shengwang-Community)

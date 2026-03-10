@@ -20,6 +20,10 @@ Missing? → [general/credentials-and-auth.md](../general/credentials-and-auth.m
 
 All language implementations live in one repo: `https://github.com/AgoraIO/Tools`
 
+> ⚠️ **DO NOT** use `agora-token-builder`, `agora-token`, or any third-party token package from PyPI / npm / Maven.
+> These are unofficial, outdated, and may generate incompatible tokens (v1 instead of v2).
+> The ONLY supported source is the official [AgoraDynamicKey](https://github.com/AgoraIO/Tools) repo below.
+
 Clone the repo:
 
 ```bash
