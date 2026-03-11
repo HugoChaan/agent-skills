@@ -34,6 +34,20 @@ Fetch docs using the doc fetching script (see [doc-fetching.md](../doc-fetching.
 
 API endpoint index → [convoai-restapi.md](convoai-restapi.md)
 
+## Sample Repos
+
+For reference projects and starter layouts, use [sample-repos.md](sample-repos.md).
+
+When the user wants help with web project structure or sample app organization:
+- Pick the relevant entry from `sample-repos.md`
+- Clone the repo on demand with `git clone --depth 1 <repo-url>`
+- Inspect the current stack, folder map, key files, and env/config shape
+- Prefer the repo as the primary reference when it contains the needed implementation pattern
+- Fall back to doc fetching only when the repo does not contain useful guidance for the user's question
+- Reuse the structural patterns that fit the user's project without copying sample-specific details blindly
+
+Keep repo URLs in `sample-repos.md` only so future URL changes stay centralized.
+
 ## Generation Rules
 
 Stable constraints that do NOT change with API updates. Always apply when generating code.
@@ -65,11 +79,7 @@ Stable constraints that do NOT change with API updates. Always apply when genera
 
 ## Demo Projects
 
-| Resource | URL |
-|----------|-----|
-| ConvoAI server sample | https://github.com/Shengwang-Community/Conversational-AI-Server-Sample |
-| Go REST client | https://github.com/AgoraIO-Community/agora-rest-client-go |
-| Java REST client | https://github.com/AgoraIO-Community/agora-rest-client-java |
+See [sample-repos.md](sample-repos.md) for the maintained ConvoAI sample registry.
 
 ## Docs Fallback
 
