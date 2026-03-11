@@ -1,6 +1,6 @@
 # ConvoAI REST API Reference
 
-Endpoint index with documentation URIs. For full request/response schemas, fetch using the doc fetching script (see [doc-fetching.md](../doc-fetching.md)).
+Endpoint index with local documentation. For the full API overview, see [convoai-restapi/index.mdx](convoai-restapi/index.mdx).
 
 ## Base URL
 
@@ -14,20 +14,18 @@ HTTP Basic Auth — see [README.md](README.md#auth) and [general/credentials-and
 
 ## Endpoints
 
-To fetch any endpoint doc, run: `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "<doc_uri>"`
+| Method | Path | Local Doc |
+|--------|------|-----------|
+| POST | `/join` | [start-agent.md](convoai-restapi/start-agent.md) |
+| POST | `/agents/{agentId}/leave` | [stop-agent.md](convoai-restapi/stop-agent.md) |
+| POST | `/agents/{agentId}/update` | [agent-update.md](convoai-restapi/agent-update.md) |
+| GET | `/agents/{agentId}` | [query-agent-status.md](convoai-restapi/query-agent-status.md) |
+| GET | `/agents` | [get-agent-list.md](convoai-restapi/get-agent-list.md) |
+| POST | `/agents/{agentId}/speak` | [agent-speak.md](convoai-restapi/agent-speak.md) |
+| POST | `/agents/{agentId}/interrupt` | [agent-interrupt.md](convoai-restapi/agent-interrupt.md) |
+| GET | `/agents/{agentId}/history` | [get-history.md](convoai-restapi/get-history.md) |
 
-| Method | Path | Doc URI |
-|--------|------|---------|
-| POST | `/join` | `docs://default/convoai/restful/convoai/operations/start-agent` |
-| POST | `/agents/{agentId}/leave` | `docs://default/convoai/restful/convoai/operations/stop-agent` |
-| POST | `/agents/{agentId}/update` | `docs://default/convoai/restful/convoai/operations/agent-update` |
-| GET | `/agents/{agentId}` | `docs://default/convoai/restful/convoai/operations/query-agent-status` |
-| GET | `/agents` | `docs://default/convoai/restful/convoai/operations/get-agent-list` |
-| POST | `/agents/{agentId}/speak` | `docs://default/convoai/restful/convoai/operations/agent-speak` |
-| POST | `/agents/{agentId}/interrupt` | `docs://default/convoai/restful/convoai/operations/agent-interrupt` |
-| GET | `/agents/{agentId}/history` | `docs://default/convoai/restful/convoai/operations/get-history` |
-
-All endpoints index: `docs://default/convoai/restful/convoai/operations`
+All endpoints index: [convoai-restapi/index.mdx](convoai-restapi/index.mdx)
 
 ## Error Response Format
 
