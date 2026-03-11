@@ -12,8 +12,8 @@ before implementation can begin.
 ## Goal
 
 Collect only the minimum missing information needed to proceed.
-Do not run a broad discovery interview. Do not ask the user to confirm a full
-solution design before continuing.
+Do not run a broad discovery interview. Do not present a large form. Do not ask
+the user to confirm a full solution design before continuing.
 
 Ask only for unanswered details that materially affect routing or implementation:
 - Use case / target solution
@@ -24,6 +24,17 @@ Ask only for unanswered details that materially affect routing or implementation
 
 Once those details are gathered, produce a short kickoff summary and continue
 to Step 2 automatically unless a required field is still missing.
+
+## Interaction Style
+
+The intake should feel like a chat, not a form.
+
+- Ask one short question at a time
+- Prefer natural wording over enumerating fields
+- Ask in priority order and stop early once there is enough information
+- Do not ask "nice to have" questions during kickoff
+- If a detail is obvious from the user's message, infer it instead of asking again
+- After each answer, decide whether to continue or route onward
 
 ## Product Routing Aid
 
@@ -55,21 +66,29 @@ Use this only to map the user's use case to the likely product set.
 Start from the user's existing message. Do not repeat information they already gave.
 
 Use the shortest set of questions needed to fill the gaps.
+Ask at most one question per turn.
 
-Typical kickoff questions:
+Priority order:
+- Use case
+- Main product, if unclear
+- Platform / client stack, if relevant
+- Backend language, if relevant
+- One additional blocker only if it materially affects implementation
+
+Short prompt examples:
 
 - Use case:
-  - ZH: "你想实现什么功能？请描述一下场景。"
-  - EN: "What are you trying to build? Describe the use case."
+  - ZH: "你想做什么场景？"
+  - EN: "What are you trying to build?"
 - Main product:
-  - ZH: "你主要想用哪个声网产品？如果不确定，我可以帮你判断。"
-  - EN: "Which Shengwang product do you mainly want to use? If you're not sure, I can infer it."
+  - ZH: "你主要想用 RTC、RTM、ConvoAI，还是录制？如果不确定我可以帮你判断。"
+  - EN: "Are you mainly using RTC, RTM, ConvoAI, or recording? If you're not sure, I can infer it."
 - Platform / client stack:
-  - ZH: "你做的是哪个平台或客户端？例如 Web、iOS、Android、小程序。"
-  - EN: "Which platform or client stack are you targeting, such as Web, iOS, Android, or mini program?"
+  - ZH: "目标平台是什么，比如 Web、iOS、Android？"
+  - EN: "What platform are you targeting, such as Web, iOS, or Android?"
 - Backend language, when relevant:
-  - ZH: "服务端准备用什么语言？例如 Go、Java、Python、Node.js。"
-  - EN: "What backend language are you using, such as Go, Java, Python, or Node.js?"
+  - ZH: "服务端准备用什么语言？"
+  - EN: "What backend language are you using?"
 
 Ask follow-up only when a missing detail affects routing or implementation.
 
@@ -84,38 +103,38 @@ Use the routing aid above to infer combinations.
 
 ### Step 3: Produce kickoff summary
 
-Present a short summary in the user's language:
+Present a short progress recap in the user's language:
 
 **ZH:**
 ```text
-项目启动信息
+已了解的信息
 ─────────────────────────────
 场景：          [use case]
 主要产品：      [primary product]
 配套产品：      [supporting products / 无]
 平台：          [platform / client stack]
 服务端语言：    [backend language / 不涉及]
-剩余缺口：      [none / missing details]
+下一步：        [go to implementation research / ask one blocker]
 ─────────────────────────────
 ```
 
 **EN:**
 ```text
-Kickoff Summary
+What I have so far
 ─────────────────────────────
 Use case:       [use case]
 Primary:        [primary product]
 Supporting:     [supporting products / none]
 Platform:       [platform / client stack]
 Backend:        [backend language / not needed]
-Gaps:           [none / missing details]
+Next:           [go to implementation research / ask one blocker]
 ─────────────────────────────
 ```
 
 Do not stop for a separate confirmation step.
 
-- If no required detail is missing → continue automatically to Step 2 in the root workflow.
-- If a required detail is still missing → ask only for that blocker, then continue.
+- If no required detail is missing -> continue automatically to Step 2 in the root workflow.
+- If a required detail is still missing -> ask only for that blocker, then continue.
 
 ### Step 4: Route onward
 
