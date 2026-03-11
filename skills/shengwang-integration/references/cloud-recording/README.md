@@ -29,11 +29,11 @@ acquire → start → stop
 
 ## Quick Start Docs
 
-| Topic | URL |
-|-------|-----|
-| Quick Start | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/cloud-recording/restful/get-started/quick-start` |
+Fetch docs using the doc fetching script (see [doc-fetching.md](../doc-fetching.md)):
 
-Fetch the URL directly using web fetch to get Markdown content.
+| Topic | Command |
+|-------|---------|
+| Quick Start | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/cloud-recording/restful/get-started/quick-start"` |
 
 ## Key Errors
 

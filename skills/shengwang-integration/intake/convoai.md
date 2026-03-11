@@ -223,7 +223,7 @@ Dev Language:     [Go / Java / Python/curl]
 | LLM vendor | `deepseek` | 如用户选默认则使用此值 | Used when user picks default |
 | TTS vendor | `bytedance` | 火山引擎 TTS | Volcengine TTS |
 
-> ASR/TTS/LLM valid values come from the /join API docs — fetch `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/convoai/operations/start-agent` for the /join schema and vendor params. Do not invent values.
+> ASR/TTS/LLM valid values come from the /join API docs — run `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/convoai/operations/start-agent"` for the /join schema and vendor params. Do not invent values.
 
 ## Route After Collection
 
@@ -231,8 +231,8 @@ Pass the structured spec to [conversational-ai](../references/conversational-ai/
 The product module will use the spec to fetch the right docs and generate code.
 
 Key routing hints:
-- Dev = Go → fetch `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/get-started/quick-start-go`
-- Dev = Java → fetch `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/get-started/quick-start-java`
-- Dev = Python/curl → fetch `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/get-started/quick-start`
+- Dev = Go → run `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/get-started/quick-start-go"`
+- Dev = Java → run `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/get-started/quick-start-java"`
+- Dev = Python/curl → run `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/get-started/quick-start"`
 - App Certificate = Enabled → also run [token-server](../references/token-server/README.md)
 - If fetch fails → use Generation Rules + fallback URL

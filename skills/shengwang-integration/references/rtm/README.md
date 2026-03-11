@@ -36,13 +36,13 @@ Both in the same AgoraDynamicKey library. See [token-server](../token-server/REA
 
 ## Quick Start Docs
 
-| Platform | URL |
-|----------|-----|
-| Web (JS) | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtm2/javascript/get-started/quick-start` |
-| Android | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtm2/android/get-started/quick-start` |
-| iOS | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtm2/ios/get-started/quick-start` |
+Fetch docs using the doc fetching script (see [doc-fetching.md](../doc-fetching.md)):
 
-Fetch the URL directly using web fetch to get Markdown content.
+| Platform | Command |
+|----------|---------|
+| Web (JS) | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtm2/javascript/get-started/quick-start"` |
+| Android | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtm2/android/get-started/quick-start"` |
+| iOS | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtm2/ios/get-started/quick-start"` |
 
 ## Docs Fallback
 

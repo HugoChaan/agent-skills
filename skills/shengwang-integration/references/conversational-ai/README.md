@@ -24,13 +24,13 @@ User Device ◄── audio ── RTC Channel ◄── ConvoAI Agent
 
 ## Quick Start Docs
 
-| Language | URL |
-|----------|-----|
-| Python / JS / curl | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/get-started/quick-start` |
-| Go | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/get-started/quick-start-go` |
-| Java | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/get-started/quick-start-java` |
+Fetch docs using the doc fetching script (see [doc-fetching.md](../doc-fetching.md)):
 
-Fetch the URL directly using web fetch to get Markdown content.
+| Language | Command |
+|----------|---------|
+| Python / JS / curl | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/get-started/quick-start"` |
+| Go | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/get-started/quick-start-go"` |
+| Java | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/get-started/quick-start-java"` |
 
 API endpoint index → [convoai-restapi.md](convoai-restapi.md)
 

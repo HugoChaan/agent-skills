@@ -60,9 +60,11 @@ Token generation is separate from REST auth. See [token-server](../token-server/
 
 ## Docs
 
-| Topic | URL |
-|-------|-----|
-| Token authentication overview | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/android/basic-features/token-authentication` |
+Fetch docs using the doc fetching script (see [doc-fetching.md](../doc-fetching.md)):
+
+| Topic | Command |
+|-------|---------|
+| Token authentication overview | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/android/basic-features/token-authentication"` |
 
 ## Docs Fallback
 

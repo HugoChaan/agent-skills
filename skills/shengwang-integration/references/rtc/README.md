@@ -25,16 +25,16 @@ Real-time audio/video communication SDK. Foundation layer for most Agora product
 
 ## Quick Start Docs
 
-| Platform | URL |
-|----------|-----|
-| Web (JS) | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/javascript/get-started/quick-start` |
-| Android | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/android/get-started/quick-start` |
-| iOS | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/ios/get-started/quick-start` |
-| Flutter | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/flutter/get-started/quick-start` |
-| React Native | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/react-native/get-started/quick-start` |
-| Electron | `https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/electron/get-started/quick-start` |
+Fetch docs using the doc fetching script (see [doc-fetching.md](../doc-fetching.md)):
 
-Fetch the URL directly using web fetch to get Markdown content.
+| Platform | Command |
+|----------|---------|
+| Web (JS) | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/javascript/get-started/quick-start"` |
+| Android | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/android/get-started/quick-start"` |
+| iOS | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/ios/get-started/quick-start"` |
+| Flutter | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/flutter/get-started/quick-start"` |
+| React Native | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/react-native/get-started/quick-start"` |
+| Electron | `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/electron/get-started/quick-start"` |
 
 ## Demo Projects
 
