@@ -21,10 +21,18 @@ Before starting, the user should have:
 
 ## Questions
 
-**Fast-path rule:** If the user's initial description already contains 3+ of the following
-(credentials status, LLM choice, TTS choice, ASR preference), skip individual questions.
-Instead, generate the structured spec directly from what they said, fill defaults for anything
-missing, and present it for confirmation.
+> **BLOCKING RULE:** The following fields MUST be explicitly answered or confirmed by the user
+> before generating the structured spec or proceeding to implementation:
+> - Credentials status (Q1)
+> - LLM provider (Q2)
+> - TTS provider (Q3)
+>
+> ASR vendor (Q4) and ASR language (Q5) may use defaults if the user does not express a preference,
+> but LLM and TTS MUST be explicitly chosen — do NOT silently fill defaults.
+> "Use the default" counts as an explicit answer. Silence or omission does NOT.
+>
+> If the user's initial message already covers some of these, skip those questions.
+> But any field not explicitly addressed must be asked.
 
 Ask **one at a time** only when needed. Skip any question the user already answered during main intake.
 Doc index status is already determined by the main intake — do not re-check here.

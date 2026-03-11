@@ -27,17 +27,22 @@ This file is the documentation index — all doc lookups depend on it.
 Do NOT proceed to Step 1 until this file exists or the download has been attempted.
 If download fails, proceed with local reference docs and fallback URLs.
 
-### Step 1: Collect kickoff information
+### Step 1: Collect kickoff information (BLOCKING)
 
-Use [intake](intake/README.md) to collect only the minimum missing information needed to begin.
+Use [intake](intake/README.md) to collect kickoff information.
 Ask only for details the user has not already provided.
 
-Mandatory kickoff details:
+Mandatory kickoff details — ALL of these must be explicitly stated or confirmed by the user before proceeding:
 - User's use case / target solution
 - Main Shengwang / Agora product
 - Platform or client stack
 - Backend language if relevant
 - Any key technical details already known that affect routing or implementation
+
+> **HARD RULE — Do NOT infer, assume, or fill defaults for product-specific configuration fields.**
+> For ConvoAI: the user must explicitly choose or confirm their ASR, LLM, and TTS providers.
+> "Use the default" is a valid explicit answer — but silence is not.
+> Do NOT begin implementation until these fields are confirmed.
 
 If the user already gave enough of this information, do not repeat questions.
 Produce a short kickoff summary, then continue automatically unless a required detail is still missing.
@@ -45,8 +50,8 @@ Produce a short kickoff summary, then continue automatically unless a required d
 ### Step 2: Start with local references
 
 Use the kickoff summary plus the route table below to select the correct local reference module.
-If the available information is sufficient, begin implementation immediately using the existing local docs
-under `references/`.
+If the available information is sufficient AND all mandatory fields from Step 1 have been explicitly
+confirmed by the user, begin implementation using the existing local docs under `references/`.
 
 | Purpose | Route to |
 |-------------|----------|
