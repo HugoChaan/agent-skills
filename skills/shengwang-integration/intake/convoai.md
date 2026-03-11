@@ -213,7 +213,7 @@ The backend language should come from the main kickoff summary rather than this 
 | LLM vendor | `deepseek` | 如用户选默认则使用此值 | Used when user picks default |
 | TTS vendor | `bytedance` | 火山引擎 TTS | Volcengine TTS |
 
-> ASR/TTS/LLM valid values come from the /join API docs — run `bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/convoai/operations/start-agent"` for the /join schema and vendor params. Do not invent values.
+> ASR/TTS/LLM valid values come from the /join API docs — see [convoai-restapi/start-agent.md](../references/conversational-ai/convoai-restapi/start-agent.md) for the /join schema and vendor params. Do not invent values.
 
 ## Route After Collection
 
