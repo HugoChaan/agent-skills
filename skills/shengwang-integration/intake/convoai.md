@@ -21,18 +21,25 @@ Before starting, the user should have:
 
 ## Questions
 
-> **BLOCKING RULE:** The following fields MUST be explicitly answered or confirmed by the user
-> before generating the structured spec or proceeding to implementation:
-> - Credentials status (Q1)
-> - LLM provider (Q2)
-> - TTS provider (Q3)
->
-> ASR vendor (Q4) and ASR language (Q5) may use defaults if the user does not express a preference,
-> but LLM and TTS MUST be explicitly chosen — do NOT silently fill defaults.
-> "Use the default" counts as an explicit answer. Silence or omission does NOT.
->
-> If the user's initial message already covers some of these, skip those questions.
-> But any field not explicitly addressed must be asked.
+Use a friendly follow-up flow:
+- Ask one question at a time
+- Keep prompts short
+- Skip anything the user already answered
+- Only block on credentials when they are required to continue
+
+Defaults policy:
+- ASR vendor may default to `fengming`
+- ASR language may be inferred from the use case or default to `zh-CN` / `en-US`
+- LLM may default to `deepseek`
+- TTS may default to `bytedance`
+
+For ASR, ASR language, LLM, and TTS, offer the recommended default in plain language once.
+If the user does not want to customize, accept the default and continue.
+Do not force provider-by-provider confirmation before implementation.
+
+Only credentials are normally blocking in this section.
+ASR vendor and ASR language should not block progress unless the user has a
+specific requirement that materially affects implementation.
 
 Ask **one at a time** only when needed. Skip any question the user already answered during main intake.
 Doc index status is already determined by the main intake — do not re-check here.
@@ -86,96 +93,94 @@ Doc index status is already determined by the main intake — do not re-check he
 ### Q2 — LLM
 
 **ZH:**
-> "你打算用哪个 LLM？"
+> "LLM 先用默认的 DeepSeek 可以吗？如果你想指定别的，我再切换。"
 > - A. 阿里云（aliyun）
 > - B. 字节跳动（bytedance）
 > - C. 深度求索（deepseek）
 > - D. 腾讯（tencent）
 > - E. OpenAI（openai）
-> - F. 用默认的就行
+> - F. 用默认的就行（deepseek）
 
 **EN:**
-> "Which LLM would you like to use?"
+> "Is it okay to start with the default LLM, DeepSeek? If you want a different one, I can switch."
 > - A. Alibaba Cloud (aliyun)
 > - B. ByteDance (bytedance)
 > - C. DeepSeek (deepseek)
 > - D. Tencent (tencent)
 > - E. OpenAI (openai)
-> - F. Use the default
+> - F. Use the default (deepseek)
 
 **Default:** deepseek
 
 ### Q3 — TTS
 
 **ZH:**
-> "你打算用哪个 TTS（语音合成）？"
+> "TTS 先用默认的火山引擎可以吗？如果你有指定供应商，我再改。"
 > - A. 字节跳动 / 火山引擎（bytedance）
 > - B. 微软（microsoft）
 > - C. MiniMax（minimax）
 > - D. 阿里 CosyVoice（cosyvoice）
 > - E. 腾讯（tencent）
 > - F. 阶跃星辰（stepfun）
-> - G. 用默认的就行
+> - G. 用默认的就行（bytedance）
 
 **EN:**
-> "Which TTS (text-to-speech) provider would you like to use?"
+> "Is it okay to start with the default TTS, ByteDance? If you prefer another provider, I can change it."
 > - A. ByteDance / Volcengine (bytedance)
 > - B. Microsoft (microsoft)
 > - C. MiniMax (minimax)
 > - D. Alibaba CosyVoice (cosyvoice)
 > - E. Tencent (tencent)
 > - F. StepFun (stepfun)
-> - G. Use the default
+> - G. Use the default (bytedance)
 
 **Default:** bytedance (Volcengine TTS)
 
 ### Q4 — ASR Vendor
 
-Most users should use the default (Agora Fengming). Only ask if the user mentions a specific ASR preference.
-
 **ZH:**
-> "你想用哪个 ASR（语音识别）？"
+> "ASR 先用默认的凤鸣可以吗？如果你想指定别的，我再切换。"
 > - A. 声网凤鸣（fengming）— 默认
 > - B. 腾讯（tencent）
 > - C. 微软（microsoft）
 > - D. 科大讯飞（xfyun）
 > - E. 科大讯飞大模型（xfyun_bigmodel）
 > - F. 科大讯飞方言（xfyun_dialect）
-> - G. 用默认的就行
+> - G. 用默认的就行（fengming）
 
 **EN:**
-> "Which ASR (speech recognition) provider would you like to use?"
+> "Is it okay to start with the default ASR, Fengming? If you want a different one, I can switch."
 > - A. Agora Fengming (fengming) — default
 > - B. Tencent (tencent)
 > - C. Microsoft (microsoft)
 > - D. iFlytek (xfyun)
 > - E. iFlytek BigModel (xfyun_bigmodel)
 > - F. iFlytek Dialect (xfyun_dialect)
-> - G. Use the default
+> - G. Use the default (fengming)
 
 **Default:** fengming
 
-> Unless the user explicitly asks for a different ASR vendor, skip this question and use the default.
-
 ### Q5 — ASR Language
 
-If the user's use case clearly involves a specific language (e.g. "英文客服", "English support bot"), infer the ASR language automatically and skip this question.
-
-Otherwise ask:
+Choose the recommended default from the use case:
+- English use case -> `en-US`
+- Chinese or unspecified use case -> `zh-CN`
 
 **ZH:**
-> "用户主要说什么语言？"
+> "识别语言先用默认的 [zh-CN / en-US] 可以吗？如果你想换成别的语言，我再改。"
 > - A. 中文（zh-CN，支持中英混合）
 > - B. 英文（en-US）
 > - C. 其他（请说明）
+> - D. 用默认的就行
 
 **EN:**
-> "What language will users primarily speak?"
+> "Is it okay to start with the default recognition language, [zh-CN / en-US]? If you want another language, I can change it."
 > - A. Chinese (zh-CN, supports Chinese-English mix)
 > - B. English (en-US)
 > - C. Other (please specify)
+> - D. Use the default
 
-**Default:** zh-CN
+**Default:** `en-US` for clearly English scenarios, otherwise `zh-CN`
 
 ---
 
@@ -188,10 +193,10 @@ ConvoAI 需求规格
 凭证状态：        [已就绪 / 需先创建]
 App Certificate： [已开启 / 未开启]
 Token：           [需要生成 / 空字符串]
-ASR：             [fengming (default) / tencent / microsoft / xfyun / xfyun_bigmodel / xfyun_dialect]
-ASR 语言：        [zh-CN / en-US / ja-JP / ko-KR / ...]
-LLM：             [aliyun / bytedance / deepseek / tencent / openai]
-TTS：             [bytedance (default) / minimax / tencent / microsoft / cosyvoice / stepfun]
+ASR：             [fengming (default applied) / tencent / microsoft / xfyun / xfyun_bigmodel / xfyun_dialect]
+ASR 语言：        [zh-CN (default applied) / en-US (default applied) / ja-JP / ko-KR / ...]
+LLM：             [aliyun / bytedance / deepseek (default applied) / tencent / openai]
+TTS：             [bytedance (default applied) / minimax / tencent / microsoft / cosyvoice / stepfun]
 ─────────────────────────────
 ```
 
@@ -202,10 +207,10 @@ ConvoAI Spec
 Credentials:      [Ready / Need to create]
 App Certificate:  [Enabled / Not enabled]
 Token:            [Need to generate / Empty string]
-ASR:              [fengming (default) / tencent / microsoft / xfyun / xfyun_bigmodel / xfyun_dialect]
-ASR Language:     [zh-CN / en-US / ja-JP / ko-KR / ...]
-LLM:              [aliyun / bytedance / deepseek / tencent / openai]
-TTS:              [bytedance (default) / minimax / tencent / microsoft / cosyvoice / stepfun]
+ASR:              [fengming (default applied) / tencent / microsoft / xfyun / xfyun_bigmodel / xfyun_dialect]
+ASR Language:     [zh-CN (default applied) / en-US (default applied) / ja-JP / ko-KR / ...]
+LLM:              [aliyun / bytedance / deepseek (default applied) / tencent / openai]
+TTS:              [bytedance (default applied) / minimax / tencent / microsoft / cosyvoice / stepfun]
 ─────────────────────────────
 ```
 
@@ -217,7 +222,7 @@ The backend language should come from the main kickoff summary rather than this 
 |-------|---------|------------|------------|
 | App Certificate | Not enabled | 如果用户不确定，按未开启处理，提醒后续开启需改传 Token | If user is unsure, treat as not enabled; remind them to pass Token if enabled later |
 | ASR vendor | `fengming` | 声网凤鸣 ASR | Agora Fengming ASR |
-| ASR language | `zh-CN` | 中文（支持中英混合）；根据用户场景推断，英文场景用 `en-US` | Chinese (supports Chinese-English mix); infer from use case, use `en-US` for English scenarios |
+| ASR language | `zh-CN` / `en-US` | 默认中文场景用 `zh-CN`；英文场景用 `en-US`；如用户接受推荐值，按 default applied 记录 | Use `zh-CN` for Chinese or unspecified scenarios and `en-US` for clearly English scenarios; mark accepted recommendation as default applied |
 | LLM vendor | `deepseek` | 如用户选默认则使用此值 | Used when user picks default |
 | TTS vendor | `bytedance` | 火山引擎 TTS | Volcengine TTS |
 
