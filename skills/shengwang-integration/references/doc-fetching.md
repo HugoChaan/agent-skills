@@ -2,44 +2,42 @@
 
 ## Overview
 
-Shengwang docs are fetched directly via HTTP. The doc index is downloaded locally to `references/docs.txt`, which maps document names to fetchable URLs.
+Shengwang docs are fetched via HTTP. The doc index (`references/docs.txt`) maps document names to fetchable URIs.
 
 ## Step 1: Ensure doc index exists
 
-Before starting any work, check if `references/docs.txt` exists.
-
-If not, download it:
+Check if `references/docs.txt` exists. If not, download it:
 ```bash
 bash skills/shengwang-integration/scripts/fetch-docs.sh
 ```
 
-## Step 2: Find the document URL
+## Step 2: Find the document URI
 
-Search `references/docs.txt` for keywords to find the target document URL.
-
-Each entry in `docs.txt` follows this format:
+Search `references/docs.txt` for keywords. Each entry follows this format:
 ```
 - [doc-name](https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/...)
 ```
 
+Extract the `docs://...` URI part for use in Step 3.
+
 ## Step 3: Fetch the document
 
-Use web fetch to access the URL directly. It returns Markdown content.
+Use the fetch script to get Markdown content:
 
-Examples:
-```
-fetch https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/convoai/restful/get-started/quick-start
-fetch https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/rtc/javascript/get-started/quick-start
-```
-
-## URL Pattern
-
-All doc URLs follow a consistent format:
-```
-https://doc-mcp.shengwang.cn/doc-content-by-uri?uri=docs://default/{product}/{platform}/{path}
+```bash
+bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/convoai/restful/get-started/quick-start"
+bash skills/shengwang-integration/scripts/fetch-doc-content.sh "docs://default/rtc/javascript/get-started/quick-start"
 ```
 
-Common product prefixes:
+The script handles the query parameter internally via curl, which works in environments
+where web fetch tools cannot pass `?uri=...` query strings.
+
+## URI Pattern
+
+```
+docs://default/{product}/{platform}/{path}
+```
+
 | Product | URI prefix |
 |---------|-----------|
 | ConvoAI | `docs://default/convoai/restful/...` |
@@ -63,7 +61,7 @@ Do NOT fetch for:
 
 ## Fallback
 
-If HTTP fetch fails, use the Shengwang doc site URL:
+If the fetch script fails, use the Shengwang doc site URL directly:
 ```
 https://doc.shengwang.cn/doc/{product}/{platform}/{path}
 ```

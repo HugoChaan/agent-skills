@@ -15,14 +15,16 @@ metadata:
 
 ## Routing Rules
 
-### Step 0: Ensure doc index exists
+### Step 0: Ensure doc index exists (MANDATORY)
 
-Before doing anything else, check if `references/docs.txt` exists.
-If not, download it:
+> **⚠️ This step is NON-NEGOTIABLE. Execute it BEFORE any routing, intake, or code generation.**
+
+Check if `references/docs.txt` exists. If not (or if this is a fresh project), download it immediately:
 ```bash
 bash skills/shengwang-integration/scripts/fetch-docs.sh
 ```
 This file is the documentation index — all doc lookups depend on it.
+Do NOT proceed to Step 1 until this file exists or the download has been attempted.
 If download fails, proceed with local reference docs and fallback URLs.
 
 ### Step 1: Check if intake can be skipped
