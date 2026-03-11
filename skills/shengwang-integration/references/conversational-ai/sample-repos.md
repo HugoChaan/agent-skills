@@ -11,6 +11,7 @@ Default rule:
 Alignment rules:
 - Preserve sample env var names from the cloned repo's env template files unless the user explicitly asks to rename or normalize them.
 - Preserve the sample repo's folder structure, dependency choices, and API shape by default.
+- If the sample repo already uses official SDKs or agent libraries for the needed flow, keep that path instead of replacing it with handwritten REST calls.
 - Apply a tight diff budget: change only what is required for the user's confirmed provider choices and requested functionality.
 - Before editing code, state which sample repo is being followed, which env template files were inspected, and list the exact planned differences.
 
@@ -24,8 +25,9 @@ Usage workflow:
 2. Clone the repo on demand with `git clone --depth 1 <repo-url>`.
 3. Inspect the repo to confirm its current stack, folder map, entrypoints, env template files, and API surface.
 4. Use the cloned repo's actual env template files as the source of truth for env naming.
-5. If the repo does not answer the question, fetch Shengwang docs for the missing API or product details.
-6. Keep the implementation structurally close to the sample unless the user explicitly requests `minimal-custom`.
+5. Prefer the official SDKs, agent libraries, and dependency patterns already present in the sample repo over handwritten REST calls.
+6. If the repo does not answer the question, fetch Shengwang docs for the missing API or product details.
+7. Keep the implementation structurally close to the sample unless the user explicitly requests `minimal-custom`.
 
 | Sample | Repo URL | Default Stack | Backend Entrypoint | Frontend Entrypoint | Use When |
 |--------|----------|---------------|--------------------|---------------------|----------|

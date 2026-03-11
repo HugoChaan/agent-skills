@@ -45,6 +45,7 @@ Required workflow:
 - Clone the repo on demand with `git clone --depth 1 <repo-url>`
 - Inspect the current stack, folder map, key files, env template files, and API surface
 - Inspect the sample repo's actual env template files before coding, such as `.env.example`, `.env.local.example`, and similar sample-provided files
+- Prefer the official SDKs, agent libraries, and dependency patterns already used by the sample repo over building a direct REST integration from scratch
 - Keep the implementation aligned with the sample repo's architecture, env var names discovered from those template files, dependency choices, and API shape
 - Use Shengwang doc fetching only for missing API or product details that the sample repo does not cover
 
@@ -56,6 +57,8 @@ Alignment rules:
 - Preserve the sample repo's env var names from the inspected env template files unless the user explicitly asks to rename or normalize them
 - Preserve the sample repo's folder structure and backend/frontend boundaries unless the user explicitly asks for a redesign
 - Preserve the sample repo's dependency choices and API shape by default; only swap what is necessary for the user's confirmed provider choices
+- Prefer official SDK and agent-library integrations over handwritten REST clients when they cover the required behavior
+- Use direct REST only for unsupported capability gaps, debugging, or when the user explicitly asks for raw REST
 - Do not invent env names from memory or from this skill's static docs when the sample repo provides template files
 
 Diff budget rule:
@@ -65,8 +68,11 @@ Diff budget rule:
 
 Before editing code, state:
 - which sample repo is being followed
+- which SDK or agent-library path is being followed, or why direct REST is required
 - which env template files were inspected
 - what exact differences will be introduced
+
+REST docs are still the low-level reference for request/response schemas and unsupported operations, but they are not the default starting point when the sample repo or official libraries already cover the needed flow.
 
 Keep repo URLs in `sample-repos.md` only so future URL changes stay centralized.
 
